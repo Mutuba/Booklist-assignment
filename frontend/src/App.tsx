@@ -30,34 +30,6 @@ const App: React.FC = () => {
     }
   }, [data]);
 
-  useEffect(() => {
-    const initialBooks: Book[] = [
-      {
-        id: "51",
-        title: "Curious Princess and the Enchanted Garden",
-        author: "Reese Smith",
-        coverPhotoURL: "assets/image2.webp",
-        readingLevel: "H",
-      },
-      {
-        id: "52",
-        title: "Clever Monster on the Wonder Island",
-        author: "Jordan Jones",
-        coverPhotoURL: "assets/image10.webp",
-        readingLevel: "I",
-      },
-      {
-        id: "53",
-        title: "Happy Knight and the Magic Spell",
-        author: "Quinn Brown",
-        coverPhotoURL: "assets/image10.webp",
-        readingLevel: "I",
-      },
-    ];
-
-    setReadingList(initialBooks);
-  }, [data]);
-
   const addBookToReadingList = (book: Book) => {
     // Check if the book with the same id already exists in the readingList
     if (!readingList.some((b) => b.id === book.id)) {
