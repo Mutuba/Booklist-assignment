@@ -1,14 +1,7 @@
 import React from "react";
 import { Grid, Typography, Container } from "@mui/material";
 import BookDetailCard from "./BookDetailCard";
-
-interface Book {
-  id: string;
-  title: string;
-  author: string;
-  coverPhotoURL: string;
-  readingLevel: string;
-}
+import { Book } from "../interfaces/Book";
 
 interface ReadingListProps {
   books: Book[];

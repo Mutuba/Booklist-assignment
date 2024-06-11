@@ -9,15 +9,8 @@ import {
   Avatar,
   Typography,
 } from "@mui/material";
-import DividerVariants from "./CustomDivider";
-
-interface Book {
-  id: string;
-  title: string;
-  author: string;
-  coverPhotoURL: string;
-  readingLevel: string;
-}
+import DividerVariants from "./shared/CustomDivider";
+import { Book } from "../interfaces/Book";
 
 interface BookDetailCardProps {
   book: Book;

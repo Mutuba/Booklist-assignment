@@ -1,15 +1,8 @@
 import React from "react";
 import { TextField, Autocomplete } from "@mui/material";
 import BookDetail from "./BookDetail";
-import CustomDivider from "./CustomDivider";
-
-interface Book {
-  id: string;
-  title: string;
-  author: string;
-  coverPhotoURL: string;
-  readingLevel: string;
-}
+import CustomDivider from "./shared/CustomDivider";
+import { Book } from "../interfaces/Book";
 
 interface SearchBarProps {
   books: Book[];

@@ -3,15 +3,8 @@ import { useQuery, gql } from "@apollo/client";
 import { Container, Typography } from "@mui/material";
 import ReadingList from "./components/ReadingList";
 import SearchBar from "./components/SearchBar";
-import CustomAlert from "./components/CustomAlert";
-
-interface Book {
-  id: string;
-  title: string;
-  author: string;
-  coverPhotoURL: string;
-  readingLevel: string;
-}
+import CustomAlert from "./components/shared/CustomAlert";
+import { Book } from "./interfaces/Book";
 
 const GET_BOOKS = gql`
   query GetBooks {
