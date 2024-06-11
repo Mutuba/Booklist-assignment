@@ -13,7 +13,7 @@ const style = {
 const CustomDivider: React.FC = () => {
   return (
     <List sx={style}>
-      <Divider variant="middle" component="li" />
+      <Divider variant="middle" component="li" data-testid="custom-divider" />
     </List>
   );
 };
