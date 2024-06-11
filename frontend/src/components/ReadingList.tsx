@@ -14,7 +14,7 @@ const ReadingList: React.FC<ReadingListProps> = ({
 }) => {
   return (
     <Container maxWidth="md" style={{ marginTop: "3rem" }}>
-      <Typography variant="h2" gutterBottom>
+      <Typography variant="h2" gutterBottom style={{ textAlign: "center" }}>
         Reading List
       </Typography>
       <Grid container spacing={2}>

@@ -1,8 +1,8 @@
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
-
-// import "./index.css";
+import "./index.css";
+import { ReadingListProvider } from "./contexts/ReadingListContext";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000",
@@ -20,7 +20,12 @@ if (rootElement) {
   root.render(
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
-        <App />
+        <React.StrictMode>
+          <ReadingListProvider>
+            <App />
+          </ReadingListProvider>
+        </React.StrictMode>
+        ,
       </ThemeProvider>
     </ApolloProvider>
   );

@@ -5,16 +5,13 @@ import {
   ListItemSecondaryAction,
   Avatar,
   IconButton,
+  Badge,
+  Box,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-
-interface Book {
-  id: string;
-  title: string;
-  author: string;
-  coverPhotoURL: string;
-  readingLevel: string;
-}
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { useReadingList } from "../contexts/ReadingListContext";
+import { Book } from "../interfaces/Book";
 
 interface BookProps {
   book: Book;
@@ -22,6 +19,9 @@ interface BookProps {
 }
 
 const BookDetail: React.FC<BookProps> = ({ book, addBookToReadingList }) => {
+  const { readingList } = useReadingList();
+  const isInReadingList = readingList.some((b) => b.id === book.id);
+
   return (
     <ListItem key={book.id}>
       <Avatar
@@ -29,12 +29,25 @@ const BookDetail: React.FC<BookProps> = ({ book, addBookToReadingList }) => {
         alt={book.title}
         sx={{ marginRight: 2 }}
       />
-      <ListItemText
-        primary={book.title}
-        secondary={`Author: ${book.author} | Level: ${book.readingLevel}`}
-      />
+      <Box display="flex" alignItems="center" flexGrow={1}>
+        <ListItemText
+          primary={book.title}
+          secondary={`Author: ${book.author} | Level: ${book.readingLevel}`}
+        />
+        {isInReadingList && (
+          <Badge
+            badgeContent={<CheckCircleIcon color="primary" />}
+            overlap="circular"
+            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+            style={{ marginRight: "1rem" }}
+          />
+        )}
+      </Box>
       <ListItemSecondaryAction>
-        <IconButton onClick={() => addBookToReadingList(book)}>
+        <IconButton
+          onClick={() => addBookToReadingList(book)}
+          disabled={isInReadingList}
+        >
           <AddIcon />
         </IconButton>
       </ListItemSecondaryAction>
