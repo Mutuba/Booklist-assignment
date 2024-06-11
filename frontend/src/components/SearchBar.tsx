@@ -1,8 +1,10 @@
 import React from "react";
 import { TextField, Autocomplete } from "@mui/material";
 import BookDetail from "./BookDetail";
+import CustomDivider from "./CustomDivider";
 
 interface Book {
+  id: string;
   title: string;
   author: string;
   coverPhotoURL: string;
@@ -34,12 +36,26 @@ const SearchBar: React.FC<SearchBarProps> = ({
         setSearchResults(value ? [value] : []);
       }}
       renderOption={(_props, option) => (
-        <BookDetail book={option} addBookToReadingList={addBookToReadingList} />
+        <div key={option.id}>
+          <BookDetail
+            book={option}
+            addBookToReadingList={addBookToReadingList}
+          />
+          <CustomDivider />
+        </div>
       )}
       style={{
         width: "100%",
       }}
-      renderInput={(params) => <TextField {...params} />}
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          InputProps={{
+            ...params.InputProps,
+            endAdornment: null,
+          }}
+        />
+      )}
     />
   );
 };

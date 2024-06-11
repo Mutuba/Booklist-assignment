@@ -9,6 +9,7 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 
 interface Book {
+  id: string;
   title: string;
   author: string;
   coverPhotoURL: string;
@@ -22,7 +23,7 @@ interface BookProps {
 
 const BookDetail: React.FC<BookProps> = ({ book, addBookToReadingList }) => {
   return (
-    <ListItem key={book.title}>
+    <ListItem key={book.id}>
       <Avatar
         src={book.coverPhotoURL}
         alt={book.title}

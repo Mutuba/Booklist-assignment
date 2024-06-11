@@ -3,6 +3,7 @@ import { List } from "@mui/material";
 import BookDetail from "./BookDetail";
 
 interface Book {
+  id: string;
   title: string;
   author: string;
   coverPhotoURL: string;
@@ -19,7 +20,7 @@ const BookList: React.FC<BookListProps> = ({ books, addBookToReadingList }) => {
     <List>
       {books.map((book) => (
         <BookDetail
-          key={book.title}
+          key={book.id}
           book={book}
           addBookToReadingList={addBookToReadingList}
         />

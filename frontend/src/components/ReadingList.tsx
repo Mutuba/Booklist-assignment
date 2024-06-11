@@ -1,16 +1,9 @@
 import React from "react";
-import {
-  List,
-  ListItem,
-  ListItemText,
-  ListItemSecondaryAction,
-  Button,
-  Typography,
-  Card,
-  CardContent,
-} from "@mui/material";
+import { Grid, Typography, Container } from "@mui/material";
+import BookDetailCard from "./BookDetailCard";
 
 interface Book {
+  id: string;
   title: string;
   author: string;
   coverPhotoURL: string;
@@ -27,31 +20,20 @@ const ReadingList: React.FC<ReadingListProps> = ({
   removeBookFromReadingList,
 }) => {
   return (
-    <div style={{ marginTop: "8rem" }}>
+    <Container maxWidth="md" style={{ marginTop: "8rem" }}>
       <Typography variant="h2" gutterBottom>
         Reading List
       </Typography>
-      <Card style={{ maxHeight: "600px", overflowY: "auto" }}>
-        <CardContent>
-          <List>
-            {books.map((book) => (
-              <ListItem key={book.title}>
-                <ListItemText primary={book.title} secondary={book.author} />
-                <ListItemSecondaryAction>
-                  <Button
-                    variant="contained"
-                    style={{ color: "#fff" }}
-                    onClick={() => removeBookFromReadingList(book)}
-                  >
-                    Remove
-                  </Button>
-                </ListItemSecondaryAction>
-              </ListItem>
-            ))}
-          </List>
-        </CardContent>
-      </Card>
-    </div>
+      <Grid container spacing={2}>
+        {books.map((book) => (
+          <BookDetailCard
+            key={book.id}
+            book={book}
+            removeBookFromReadingList={removeBookFromReadingList}
+          />
+        ))}
+      </Grid>
+    </Container>
   );
 };
 
