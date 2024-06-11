@@ -50,6 +50,7 @@ const BookDetailCard: React.FC<BookDetailCardProps> = ({
           <Typography
             gutterBottom
             variant="h5"
+            color="textSecondary"
             component="div"
             textAlign="center"
           >

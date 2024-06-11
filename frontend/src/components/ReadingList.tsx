@@ -20,7 +20,7 @@ const ReadingList: React.FC<ReadingListProps> = ({
   removeBookFromReadingList,
 }) => {
   return (
-    <Container maxWidth="md" style={{ marginTop: "8rem" }}>
+    <Container maxWidth="md" style={{ marginTop: "3rem" }}>
       <Typography variant="h2" gutterBottom>
         Reading List
       </Typography>

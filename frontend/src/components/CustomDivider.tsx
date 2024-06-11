@@ -10,10 +10,12 @@ const style = {
   borderColor: "divider",
 };
 
-export default function CustomDivider() {
+const CustomDivider: React.FC = () => {
   return (
     <List sx={style}>
       <Divider variant="middle" component="li" />
     </List>
   );
-}
+};
+
+export default CustomDivider;
