@@ -1,7 +1,8 @@
-import { ApolloServer } from '@apollo/server';
-import { startStandaloneServer } from '@apollo/server/standalone';
-import { typeDefs } from './schema';
-import { resolvers } from './resolvers';
+/* eslint-disable quotes */
+import { ApolloServer } from "@apollo/server";
+import { startStandaloneServer } from "@apollo/server/standalone";
+import { typeDefs } from "./schema";
+import { resolvers } from "./resolvers";
 
 const server = new ApolloServer({ typeDefs, resolvers });
 
