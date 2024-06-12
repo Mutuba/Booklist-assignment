@@ -17,6 +17,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
 }) => {
   return (
     <Autocomplete
+      data-testid={"search-results-autocomplete"}
       disablePortal
       options={books}
       getOptionLabel={(option) => option.title}
