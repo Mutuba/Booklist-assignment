@@ -8,6 +8,9 @@ interface ReadingListContextProps {
 }
 interface ReadingListProviderProps {
   children: ReactNode;
+  value?: {
+    readingList: Book[];
+  };
 }
 
 const ReadingListContext = createContext<ReadingListContextProps | null>(null);

@@ -3,7 +3,6 @@ import {
   ListItem,
   ListItemText,
   ListItemSecondaryAction,
-  Avatar,
   IconButton,
   Badge,
   Box,
@@ -24,11 +23,6 @@ const BookDetail: React.FC<BookProps> = ({ book, addBookToReadingList }) => {
 
   return (
     <ListItem key={book.id}>
-      <Avatar
-        src={book.coverPhotoURL}
-        alt={book.title}
-        sx={{ marginRight: 2 }}
-      />
       <Box display="flex" alignItems="center" flexGrow={1}>
         <ListItemText
           primary={book.title}
@@ -45,10 +39,15 @@ const BookDetail: React.FC<BookProps> = ({ book, addBookToReadingList }) => {
       </Box>
       <ListItemSecondaryAction>
         <IconButton
+          aria-label="Add"
           onClick={() => addBookToReadingList(book)}
           disabled={isInReadingList}
+          // data-testid={`add-book-button-${book.id}`}
         >
-          <AddIcon />
+          <AddIcon
+            data-testid={`add-book-button-${book.id}`}
+            color="disabled"
+          />
         </IconButton>
       </ListItemSecondaryAction>
     </ListItem>
