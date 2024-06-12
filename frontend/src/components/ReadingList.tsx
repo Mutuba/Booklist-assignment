@@ -18,7 +18,7 @@ const ReadingList: React.FC<ReadingListProps> = ({
         Reading List
       </Typography>
       <Grid container spacing={2}>
-        {books.map((book) => (
+        {books?.map((book) => (
           <BookDetailCard
             key={book.id}
             book={book}

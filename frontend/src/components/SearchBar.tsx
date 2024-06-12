@@ -22,7 +22,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
       options={books}
       getOptionLabel={(option) => option.title}
       filterOptions={(options, { inputValue }) =>
-        options.filter((option) =>
+        options?.filter((option) =>
           option.title.toLowerCase().includes(inputValue.toLowerCase())
         )
       }
