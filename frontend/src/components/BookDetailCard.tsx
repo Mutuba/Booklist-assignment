@@ -70,6 +70,7 @@ const BookDetailCard: React.FC<BookDetailCardProps> = ({
           <Button
             variant="contained"
             size="small"
+            data-testid={`remove-book-button-${book.id}`}
             sx={{ color: "#fff", mb: 2, textTransform: "none" }}
             onClick={() => removeBookFromReadingList(book)}
           >
