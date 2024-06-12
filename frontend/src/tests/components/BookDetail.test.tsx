@@ -7,7 +7,7 @@ const mockBook = {
   id: "1",
   title: "Book 1",
   author: "Author 1",
-  coverPhotoURL: "http://example.com/image1.webp",
+  coverPhotoURL: "image1.webp",
   readingLevel: "A",
 };
 

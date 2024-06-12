@@ -1,11 +1,12 @@
 /* eslint-disable quotes */
+
+// Added an id attribute to uniquely identify each object during i parse on the FE
 export const booksData = [
   {
     id: "1",
     title: "Curious Princess and the Enchanted Garden",
     author: "Reese Smith",
     coverPhotoURL: "image2.webp",
-
     readingLevel: "H",
   },
   {

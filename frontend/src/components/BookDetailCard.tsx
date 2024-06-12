@@ -42,7 +42,6 @@ const BookDetailCard: React.FC<BookDetailCardProps> = ({
               alt={book.title}
               sx={{ width: 56, height: 56 }}
             />
-            {/* <Avatar src={avatarSrc} alt={book.title} sx={{ marginRight: 2 }} /> */}
           </Box>
           <Typography
             gutterBottom

@@ -6,11 +6,15 @@ const mockBook = {
   id: "1",
   title: "Book 1",
   author: "Author 1",
-  coverPhotoURL: "http://example.com/image1.webp",
+  coverPhotoURL: "image1.webp",
   readingLevel: "A",
 };
 
 const removeBookMock = jest.fn();
+
+jest.mock("../../../useCoverPhotoURL", () => ({
+  useCoverPhotoURL: jest.fn().mockReturnValue("mocked-image-url"),
+}));
 
 describe("BookDetailCard Component", () => {
   test("renders book details correctly", () => {

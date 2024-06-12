@@ -3,11 +3,10 @@ module.exports = {
 
   preset: "ts-jest",
 
-  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
+  moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
 
   testMatch: ["<rootDir>/src/**/*.test.{ts,tsx,js,jsx}"],
 
-  // Configures code coverage settings
   collectCoverage: true,
   coverageReporters: ["json", "lcov", "text", "html"],
   collectCoverageFrom: [
@@ -15,7 +14,20 @@ module.exports = {
     "!src/index.tsx",
     "!**/node_modules/**",
   ],
-  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
+
+  setupFilesAfterEnv: [
+    // Importing '@testing-library/jest-dom' provides useful custom matchers for
+    // asserting on DOM elements in your tests. These matchers enhance the
+    // readability and expressiveness of your test assertions.
+    "<rootDir>/jest.setup.ts",
+  ],
+
+  // Instructing jest to use identity-obj-proxy for any import statement
+  // that ends with .jpg, .jpeg, .png, .gif, .webp, .svg, .css, .less, .scss, or .sass
+  moduleNameMapper: {
+    "\\.(jpg|jpeg|png|gif|webp|svg)$": "identity-obj-proxy",
+    "\\.(css|less|scss|sass)$": "identity-obj-proxy",
+  },
 
   // Transforms files before running tests
   transform: {

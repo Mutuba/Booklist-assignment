@@ -22,7 +22,6 @@ describe("CustomAlert Component", () => {
 
     fireEvent.click(closeButton);
 
-    // Wait for the alert to close
     await waitFor(() => {
       expect(setShowAlert).toHaveBeenCalledWith(false);
     });
