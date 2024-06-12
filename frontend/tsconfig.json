@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ES2019", // or "ES6", based on your preference
+    "types": ["node", "jest", "@types/jest", "@testing-library/jest-dom"],
+
+    "target": "ES2019",
     "module": "commonjs",
     "jsx": "react",
     "strict": true,
@@ -8,9 +10,8 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist",
-    "types": ["@types/jest", "@testing-library/jest-dom"]
+    "outDir": "./dist"
   },
-  "include": ["src/**/*", "jest.setup.js"],
+  "include": ["src/**/*", "jest.setup.js", "useCoverPhotoURL.tsx"],
   "exclude": ["node_modules"]
 }

@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import DividerVariants from "./shared/CustomDivider";
 import { Book } from "../interfaces/Book";
+import { useCoverPhotoURL } from "../../useCoverPhotoURL";
 
 interface BookDetailCardProps {
   book: Book;
@@ -21,6 +22,8 @@ const BookDetailCard: React.FC<BookDetailCardProps> = ({
   book,
   removeBookFromReadingList,
 }) => {
+  const avatarSrc = useCoverPhotoURL(book.coverPhotoURL);
+
   return (
     <Grid item md={4} sm={12} xs={12}>
       <Card
@@ -35,10 +38,11 @@ const BookDetailCard: React.FC<BookDetailCardProps> = ({
         <CardContent>
           <Box sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
             <Avatar
-              src={book.coverPhotoURL}
+              src={avatarSrc}
               alt={book.title}
               sx={{ width: 56, height: 56 }}
             />
+            {/* <Avatar src={avatarSrc} alt={book.title} sx={{ marginRight: 2 }} /> */}
           </Box>
           <Typography
             gutterBottom

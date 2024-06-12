@@ -1,7 +1,9 @@
 const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
 module.exports = {
   entry: "./src/index.tsx",
-  mode: "development", // You can change this to "production" for production builds
+  mode: "development",
   module: {
     rules: [
       {
@@ -13,6 +15,17 @@ module.exports = {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
       },
+      {
+        test: /\.(png|jpg|jpeg|gif|webp)$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "assets/[name].[ext]",
+            },
+          },
+        ],
+      },
     ],
   },
   resolve: {
@@ -21,7 +34,13 @@ module.exports = {
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
+    publicPath: "/",
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./public/index.html",
+    }),
+  ],
   devServer: {
     static: {
       directory: path.join(__dirname, "public"),
