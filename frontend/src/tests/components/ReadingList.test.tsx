@@ -36,7 +36,7 @@ describe("ReadingList Component", () => {
     });
   });
 
-  test("calls removeBookFromReadingList when removing a book", () => {
+  test("calls removeBookFromReadingList when removing a book", async () => {
     const removeBookMock = jest.fn();
 
     render(
@@ -46,9 +46,7 @@ describe("ReadingList Component", () => {
       />
     );
 
-    const removeButton = screen.getByTestId("remove-book-button-1");
-
-    fireEvent.click(removeButton);
+    fireEvent.click(screen.getByTestId("remove-book-button-1"));
 
     expect(removeBookMock).toHaveBeenCalledWith(mockBooks[0]);
   });
