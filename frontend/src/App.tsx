@@ -33,6 +33,7 @@ const App: React.FC = () => {
     }
   }, [data]);
 
+  console.log("Testing", data);
   const handleRemoveBook = (readingListBook: Book) => {
     removeBookFromReadingList(readingListBook);
     setShowAlert(true);

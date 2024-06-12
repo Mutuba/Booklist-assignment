@@ -19,6 +19,7 @@ const GET_BOOKS = gql`
 
 const mocks = [
   {
+    delay: 30,
     request: {
       query: GET_BOOKS,
     },
@@ -55,9 +56,9 @@ describe("App Component", () => {
       </MockedProvider>
     );
 
-    expect(screen.getByText(/Loading.../i)).toBeInTheDocument();
-    expect(screen.getByText("Book Assignment View")).toBeInTheDocument();
-    expect(screen.getByLabelText("Search Books")).toBeInTheDocument();
-    expect(screen.getByText("Reading List")).toBeInTheDocument();
+    expect(await screen.findByText("Loading...")).toBeInTheDocument();
+    expect(await screen.findByText("Book Assignment View")).toBeInTheDocument();
+    expect(await screen.findByLabelText("Search Books")).toBeInTheDocument();
+    expect(await screen.findByText("Reading List")).toBeInTheDocument();
   });
 });

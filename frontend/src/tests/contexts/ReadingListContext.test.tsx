@@ -61,9 +61,9 @@ describe("ReadingListContext", () => {
 
     userEvent.click(screen.getByText("Add Book"));
 
-    await waitFor(() => {
+    await waitFor(async () => {
       expect(screen.getByTestId("book-1")).toBeInTheDocument();
-      expect(screen.getByText("Book 1")).toBeInTheDocument;
+      expect(await screen.findByText("Book 1")).toBeInTheDocument;
     });
 
     userEvent.click(screen.getByText("Remove Book"));
