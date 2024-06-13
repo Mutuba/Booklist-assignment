@@ -10,17 +10,15 @@ interface SnackbarAlertContextProps {
   showSnackbarAlert: boolean;
   setShowSnackbarAlert: React.Dispatch<React.SetStateAction<boolean>>;
   snackbarAlertMessage: string;
-  setSnackbarAlertMessage: React.Dispatch<React.SetStateAction<string>>;
   triggerSnackbarAlert: (message: string) => void;
 }
 
-interface AlertProviderProps {
+interface SnackbarAlertProviderProps {
   children: ReactNode;
   value?: {
     showSnackbarAlert?: false;
     setShowSnackbarAlert?: React.Dispatch<React.SetStateAction<boolean>>;
     snackbarAlertMessage?: "";
-    setSnackbarAlertMessage?: React.Dispatch<React.SetStateAction<string>>;
   };
 }
 
@@ -36,7 +34,9 @@ export const useAlert = () => {
   return context;
 };
 
-export const AlertProvider: React.FC<AlertProviderProps> = ({ children }) => {
+export const AlertProvider: React.FC<SnackbarAlertProviderProps> = ({
+  children,
+}) => {
   const [showSnackbarAlert, setShowSnackbarAlert] = useState(false);
   const [snackbarAlertMessage, setSnackbarAlertMessage] = useState("");
 
@@ -44,8 +44,8 @@ export const AlertProvider: React.FC<AlertProviderProps> = ({ children }) => {
     (message: string) => {
       setShowSnackbarAlert(false);
       setTimeout(() => {
-        setSnackbarAlertMessage(message); // Set the new message
-        setShowSnackbarAlert(true); // Show the new alert
+        setSnackbarAlertMessage(message);
+        setShowSnackbarAlert(true);
       }, 100); // Small delay to ensure the state updates properly
     },
     [setShowSnackbarAlert, setSnackbarAlertMessage]
@@ -57,7 +57,6 @@ export const AlertProvider: React.FC<AlertProviderProps> = ({ children }) => {
         showSnackbarAlert,
         setShowSnackbarAlert,
         snackbarAlertMessage,
-        setSnackbarAlertMessage,
         triggerSnackbarAlert,
       }}
     >

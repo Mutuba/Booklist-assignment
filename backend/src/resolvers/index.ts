@@ -8,7 +8,7 @@ export const resolvers = {
       return new Promise((resolve) => {
         setTimeout(() => {
           resolve(booksData);
-        }, 5000); // 2000 milliseconds = 2 seconds
+        }, 5000);
       });
     },
   },
