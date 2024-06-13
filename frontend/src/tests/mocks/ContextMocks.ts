@@ -19,7 +19,7 @@ jest.mock("../../contexts/LoadingContext", () => ({
 }));
 
 jest.mock("../../contexts/SnackbarAlertContext", () => ({
-  useAlert: () => ({
+  useSnackbarAlert: () => ({
     showSnackbarAlert: true,
     snackbarAlertMessage: "Test message",
     setShowSnackbarAlert: setShowSnackbarAlertMock,

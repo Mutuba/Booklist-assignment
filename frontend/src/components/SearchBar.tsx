@@ -16,15 +16,15 @@ const SearchBar: React.FC<SearchBarProps> = ({ books, setSearchResults }) => {
       disablePortal
       options={books}
       getOptionLabel={(option) => option.title}
-      filterOptions={(options, { inputValue }) =>
+      filterOptions={(options, { inputValue: userInput }) =>
         options?.filter((option) =>
-          option.title.toLowerCase().includes(inputValue.toLowerCase())
+          option.title.toLowerCase().includes(userInput.toLowerCase())
         )
       }
-      onChange={(_event, value) => {
-        setSearchResults(value ? [value] : []);
+      onChange={(_event, searchValue) => {
+        setSearchResults(searchValue ? [searchValue] : []);
       }}
-      renderOption={(_props, option) => (
+      renderOption={(_, option) => (
         <div key={option.id}>
           <BookDetail book={option} />
           <CustomDivider />

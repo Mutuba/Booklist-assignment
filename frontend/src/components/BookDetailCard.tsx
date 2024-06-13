@@ -13,7 +13,7 @@ import { Book } from "../interfaces/Book";
 import { useCoverPhotoURL } from "../../useCoverPhotoURL";
 import { useLoading } from "../contexts/LoadingContext";
 import { useReadingList } from "../contexts/ReadingListContext";
-import { useAlert } from "../contexts/SnackbarAlertContext";
+import { useSnackbarAlert } from "../contexts/SnackbarAlertContext";
 
 interface BookDetailCardProps {
   book: Book;
@@ -23,7 +23,7 @@ const BookDetailCard: React.FC<BookDetailCardProps> = ({ book }) => {
   const avatarSrc = useCoverPhotoURL(book.coverPhotoURL);
   const { setIsLoading } = useLoading();
   const { removeBookFromReadingList } = useReadingList();
-  const { setShowSnackbarAlert, triggerSnackbarAlert } = useAlert();
+  const { setShowSnackbarAlert, triggerSnackbarAlert } = useSnackbarAlert();
 
   const handleRemoveBook = async (book: Book) => {
     setIsLoading(true);

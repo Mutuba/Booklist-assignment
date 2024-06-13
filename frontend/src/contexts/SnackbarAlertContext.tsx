@@ -19,6 +19,7 @@ interface SnackbarAlertProviderProps {
     showSnackbarAlert?: false;
     setShowSnackbarAlert?: React.Dispatch<React.SetStateAction<boolean>>;
     snackbarAlertMessage?: "";
+    triggerSnackbarAlert?: React.Dispatch<React.SetStateAction<boolean>>;
   };
 }
 
@@ -26,7 +27,7 @@ const SnackbarAlertContext = createContext<SnackbarAlertContextProps | null>(
   null
 );
 
-export const useAlert = () => {
+export const useSnackbarAlert = () => {
   const context = useContext(SnackbarAlertContext);
   if (!context) {
     throw new Error("useAlert must be used within an AlertProvider");
@@ -34,7 +35,7 @@ export const useAlert = () => {
   return context;
 };
 
-export const AlertProvider: React.FC<SnackbarAlertProviderProps> = ({
+export const SnackBarAlertProvider: React.FC<SnackbarAlertProviderProps> = ({
   children,
 }) => {
   const [showSnackbarAlert, setShowSnackbarAlert] = useState(false);

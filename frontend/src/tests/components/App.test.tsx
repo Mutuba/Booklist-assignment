@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { MockedProvider } from "@apollo/client/testing";
 import { gql } from "@apollo/client";
 import App from "../../App";
@@ -53,8 +53,13 @@ describe("App Component", () => {
       </MockedProvider>
     );
 
-    expect(await screen.findByText("Book Assignment View")).toBeInTheDocument();
-    expect(await screen.findByLabelText("Search Books")).toBeInTheDocument();
-    expect(await screen.findByText("Reading List")).toBeInTheDocument();
+    expect(screen.getByRole("progressbar")).toBeInTheDocument();
+
+    await waitFor(() => {
+      expect(screen.queryByRole("progressbar")).toBeNull();
+      expect(screen.getByText("Book Assignment View")).toBeInTheDocument();
+      expect(screen.getByLabelText("Search books")).toBeInTheDocument();
+      expect(screen.getByText("Reading List")).toBeInTheDocument();
+    });
   });
 });

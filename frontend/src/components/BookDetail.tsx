@@ -12,7 +12,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { useReadingList } from "../contexts/ReadingListContext";
 import { Book } from "../interfaces/Book";
 import { useLoading } from "../contexts/LoadingContext";
-import { useAlert } from "../contexts/SnackbarAlertContext";
+import { useSnackbarAlert } from "../contexts/SnackbarAlertContext";
 
 interface BookProps {
   book: Book;
@@ -21,11 +21,15 @@ interface BookProps {
 const BookDetail: React.FC<BookProps> = ({ book }) => {
   const { readingList, addBookToReadingList } = useReadingList();
   const { setIsLoading } = useLoading();
-  const { setShowSnackbarAlert, triggerSnackbarAlert } = useAlert();
-  const isInReadingList = readingList.some((b) => b.id === book.id);
+  const { setShowSnackbarAlert, triggerSnackbarAlert } = useSnackbarAlert();
+  const isInReadingList = readingList.some(
+    (readingListBook) => readingListBook.id === book.id
+  );
 
   const handleAddBook = (book: Book) => {
-    if (!readingList.some((b) => b.id === book.id)) {
+    if (
+      !readingList.some((readingListBook) => readingListBook.id === book.id)
+    ) {
       setIsLoading(true);
       addBookToReadingList(book);
       setIsLoading(false);

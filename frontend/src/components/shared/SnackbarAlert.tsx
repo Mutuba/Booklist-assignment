@@ -2,11 +2,11 @@ import React from "react";
 import Alert from "@mui/material/Alert";
 import CheckIcon from "@mui/icons-material/Check";
 import Snackbar from "@mui/material/Snackbar";
-import { useAlert } from "../../contexts/SnackbarAlertContext";
+import { useSnackbarAlert } from "../../contexts/SnackbarAlertContext";
 
 const SnackbarAlert: React.FC = () => {
   const { showSnackbarAlert, setShowSnackbarAlert, snackbarAlertMessage } =
-    useAlert();
+    useSnackbarAlert();
 
   const handleClose = () => {
     setShowSnackbarAlert(false);

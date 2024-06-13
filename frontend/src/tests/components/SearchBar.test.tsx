@@ -36,13 +36,13 @@ describe("SearchBar Component", () => {
 
   test("renders the text field", () => {
     render(<SearchBar books={mockBooks} setSearchResults={() => {}} />);
-    const textFieldElement = screen.getByLabelText("Search Books");
+    const textFieldElement = screen.getByLabelText("Search books");
     expect(textFieldElement).toBeInTheDocument();
   });
 
   test("filters options based on user input", async () => {
     render(<SearchBar books={mockBooks} setSearchResults={() => {}} />);
-    const textFieldElement = screen.getByLabelText("Search Books");
+    const textFieldElement = screen.getByLabelText("Search books");
     userEvent.type(textFieldElement, "Book 1");
 
     fireEvent.keyDown(textFieldElement, { key: "ArrowDown" });
@@ -59,7 +59,7 @@ describe("SearchBar Component", () => {
     render(
       <SearchBar books={mockBooks} setSearchResults={setSearchResultsMock} />
     );
-    const textFieldElement = screen.getByLabelText("Search Books");
+    const textFieldElement = screen.getByLabelText("Search books");
     userEvent.type(textFieldElement, "Book 1");
 
     fireEvent.keyDown(textFieldElement, { key: "ArrowDown" });

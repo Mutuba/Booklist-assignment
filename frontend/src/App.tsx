@@ -7,8 +7,9 @@ import CustomAlert from "./components/shared/SnackbarAlert";
 import { Book } from "./interfaces/Book";
 import { useReadingList } from "../../frontend/src/contexts/ReadingListContext";
 import Loader from "./components/shared/Loader";
+import Error from "../../frontend/src/components/shared/Error";
 import { useLoading } from "./contexts/LoadingContext";
-import { useAlert } from "./contexts/SnackbarAlertContext";
+import { useSnackbarAlert } from "./contexts/SnackbarAlertContext";
 import { GET_BOOKS } from "../src/graphql/books/queries";
 
 const App: React.FC = () => {
@@ -16,34 +17,43 @@ const App: React.FC = () => {
   const [searchResults, setSearchResults] = useState<Book[]>([]);
   const { readingList } = useReadingList();
   const { isLoading } = useLoading();
-  const { showSnackbarAlert } = useAlert();
+  const { showSnackbarAlert } = useSnackbarAlert();
 
   useEffect(() => {
-    if (data && data?.books) {
-      setSearchResults(data?.books);
+    if (data && data.books) {
+      setSearchResults(data.books);
     }
   }, [data]);
 
+  if (error) {
+    return <Error message={error.message} />;
+  }
+
   return (
     <Container maxWidth="md" style={{ marginTop: "6rem" }}>
-      {showSnackbarAlert && <CustomAlert />}
-      <Typography variant="h2" gutterBottom style={{ textAlign: "center" }}>
-        Book Assignment View
-      </Typography>
-      {searchResults && (
-        <Container maxWidth="sm">
-          <SearchBar
-            books={searchResults}
-            setSearchResults={setSearchResults}
-          />
-        </Container>
+      {loading || isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          {showSnackbarAlert && <CustomAlert />}
+          <Typography
+            variant="h2"
+            gutterBottom
+            style={{ textAlign: "center", padding: "2rem" }}
+          >
+            Book Assignment View
+          </Typography>
+          {searchResults && (
+            <Container maxWidth="sm">
+              <SearchBar
+                books={searchResults}
+                setSearchResults={setSearchResults}
+              />
+            </Container>
+          )}
+          <ReadingList books={readingList} />
+        </>
       )}
-
-      {(loading || isLoading) && <Loader />}
-
-      {error && <p>Error: {error.message}</p>}
-
-      <ReadingList books={readingList} />
     </Container>
   );
 };

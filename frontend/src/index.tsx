@@ -4,7 +4,7 @@ import theme from "./theme";
 import "./index.css";
 import { ReadingListProvider } from "./contexts/ReadingListContext";
 import { LoadingProvider } from "./contexts/LoadingContext";
-import { AlertProvider } from "./contexts/SnackbarAlertContext";
+import { SnackBarAlertProvider } from "./contexts/SnackbarAlertContext";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000",
@@ -25,9 +25,9 @@ if (rootElement) {
         <React.StrictMode>
           <ReadingListProvider>
             <LoadingProvider>
-              <AlertProvider>
+              <SnackBarAlertProvider>
                 <App />
-              </AlertProvider>
+              </SnackBarAlertProvider>
             </LoadingProvider>
           </ReadingListProvider>
         </React.StrictMode>
