@@ -77,7 +77,7 @@ export const booksData = [
     id: "11",
     title: "Happy Monster and the Lost World",
     author: "Addison Smith",
-    coverPhotoURL: "assets/image10.webp",
+    coverPhotoURL: "image10.webp",
     readingLevel: "E",
   },
   {

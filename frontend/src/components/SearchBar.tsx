@@ -7,14 +7,9 @@ import { Book } from "../interfaces/Book";
 interface SearchBarProps {
   books: Book[];
   setSearchResults: React.Dispatch<React.SetStateAction<Book[]>>;
-  addBookToReadingList: (book: Book) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({
-  books,
-  setSearchResults,
-  addBookToReadingList,
-}) => {
+const SearchBar: React.FC<SearchBarProps> = ({ books, setSearchResults }) => {
   return (
     <Autocomplete
       data-testid={"search-results-autocomplete"}
@@ -31,10 +26,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
       }}
       renderOption={(_props, option) => (
         <div key={option.id}>
-          <BookDetail
-            book={option}
-            addBookToReadingList={addBookToReadingList}
-          />
+          <BookDetail book={option} />
           <CustomDivider />
         </div>
       )}

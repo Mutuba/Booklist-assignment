@@ -3,6 +3,8 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import "./index.css";
 import { ReadingListProvider } from "./contexts/ReadingListContext";
+import { LoadingProvider } from "./contexts/LoadingContext";
+import { AlertProvider } from "./contexts/SnackbarAlertContext";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000",
@@ -22,10 +24,13 @@ if (rootElement) {
       <ThemeProvider theme={theme}>
         <React.StrictMode>
           <ReadingListProvider>
-            <App />
+            <LoadingProvider>
+              <AlertProvider>
+                <App />
+              </AlertProvider>
+            </LoadingProvider>
           </ReadingListProvider>
         </React.StrictMode>
-        ,
       </ThemeProvider>
     </ApolloProvider>
   );

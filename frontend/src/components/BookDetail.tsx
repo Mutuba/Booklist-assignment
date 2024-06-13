@@ -11,15 +11,31 @@ import AddIcon from "@mui/icons-material/Add";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { useReadingList } from "../contexts/ReadingListContext";
 import { Book } from "../interfaces/Book";
+import { useLoading } from "../contexts/LoadingContext";
+import { useAlert } from "../contexts/SnackbarAlertContext";
 
 interface BookProps {
   book: Book;
-  addBookToReadingList: (book: Book) => void;
 }
 
-const BookDetail: React.FC<BookProps> = ({ book, addBookToReadingList }) => {
-  const { readingList } = useReadingList();
+const BookDetail: React.FC<BookProps> = ({ book }) => {
+  const { readingList, addBookToReadingList } = useReadingList();
+  const { setIsLoading } = useLoading();
+  const { setShowSnackbarAlert, triggerSnackbarAlert } = useAlert();
   const isInReadingList = readingList.some((b) => b.id === book.id);
+
+  const handleAddBook = (book: Book) => {
+    if (!readingList.some((b) => b.id === book.id)) {
+      setIsLoading(true);
+      addBookToReadingList(book);
+      setIsLoading(false);
+      setShowSnackbarAlert(true);
+      triggerSnackbarAlert("Book added to reading list");
+    } else {
+      setShowSnackbarAlert(true);
+      triggerSnackbarAlert("Book already exists in the reading list");
+    }
+  };
 
   return (
     <ListItem key={book.id}>
@@ -40,13 +56,10 @@ const BookDetail: React.FC<BookProps> = ({ book, addBookToReadingList }) => {
       <ListItemSecondaryAction>
         <IconButton
           aria-label="Add"
-          onClick={() => addBookToReadingList(book)}
+          onClick={() => handleAddBook(book)}
           disabled={isInReadingList}
         >
-          <AddIcon
-            data-testid={`add-book-button-${book.id}`}
-            color="disabled"
-          />
+          <AddIcon data-testid={`add-book-button-${book.id}`} />
         </IconButton>
       </ListItemSecondaryAction>
     </ListItem>

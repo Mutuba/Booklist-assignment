@@ -1,6 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import BookDetailCard from "../../components/BookDetailCard";
+import { removeBookMock } from "../mocks/ContextMocks";
 
 const mockBook = {
   id: "1",
@@ -10,20 +11,9 @@ const mockBook = {
   readingLevel: "A",
 };
 
-const removeBookMock = jest.fn();
-
-jest.mock("../../../useCoverPhotoURL", () => ({
-  useCoverPhotoURL: jest.fn().mockReturnValue("mocked-image-url"),
-}));
-
 describe("BookDetailCard Component", () => {
   test("renders book details correctly", () => {
-    render(
-      <BookDetailCard
-        book={mockBook}
-        removeBookFromReadingList={removeBookMock}
-      />
-    );
+    render(<BookDetailCard book={mockBook} />);
 
     expect(screen.getByText(mockBook.title)).toBeInTheDocument();
     expect(screen.getByText(`Author: ${mockBook.author}`)).toBeInTheDocument();
@@ -32,23 +22,16 @@ describe("BookDetailCard Component", () => {
     ).toBeInTheDocument();
     expect(screen.getByAltText(mockBook.title)).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: /Remove from Reading List/i })
+      screen.getByRole("button", { name: "Remove from Reading List" })
     ).toBeInTheDocument();
   });
 
   test("calls removeBookFromReadingList when remove button is clicked", () => {
-    render(
-      <BookDetailCard
-        book={mockBook}
-        removeBookFromReadingList={removeBookMock}
-      />
-    );
-
+    render(<BookDetailCard book={mockBook} />);
     const removeButton = screen.getByTestId(
       `remove-book-button-${mockBook.id}`
     );
     fireEvent.click(removeButton);
-
     expect(removeBookMock).toHaveBeenCalledWith(mockBook);
   });
 });

@@ -1,9 +1,15 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import BookDetail from "../../components/BookDetail";
-import { ReadingListProvider } from "../../contexts/ReadingListContext";
+import { Book } from "../../interfaces/Book";
+import {
+  addBookToReadingListMock,
+  setIsLoadingMock,
+  triggerSnackbarAlertMock,
+  setShowSnackbarAlertMock,
+} from "../mocks/ContextMocks";
 
-const mockBook = {
+const mockBook: Book = {
   id: "1",
   title: "Book 1",
   author: "Author 1",
@@ -11,18 +17,16 @@ const mockBook = {
   readingLevel: "A",
 };
 
-const addBookToReadingListMock = jest.fn();
-
 describe("BookDetail Component", () => {
+  beforeEach(() => {
+    addBookToReadingListMock.mockClear();
+    setIsLoadingMock.mockClear();
+    setShowSnackbarAlertMock.mockClear();
+    triggerSnackbarAlertMock.mockClear();
+  });
+
   test("renders book details correctly", () => {
-    render(
-      <ReadingListProvider>
-        <BookDetail
-          book={mockBook}
-          addBookToReadingList={addBookToReadingListMock}
-        />
-      </ReadingListProvider>
-    );
+    render(<BookDetail book={mockBook} />);
 
     expect(screen.getByText(mockBook.title)).toBeInTheDocument();
     expect(
@@ -33,19 +37,21 @@ describe("BookDetail Component", () => {
     expect(screen.getByLabelText("Add")).toBeInTheDocument();
   });
 
-  test("calls addBookToReadingList when add button is clicked", () => {
-    render(
-      <ReadingListProvider value={{ readingList: [] }}>
-        <BookDetail
-          book={mockBook}
-          addBookToReadingList={addBookToReadingListMock}
-        />
-      </ReadingListProvider>
-    );
+  test("calls addBookToReadingList when add button is clicked", async () => {
+    render(<BookDetail book={mockBook} />);
 
     const addButton = screen.getByTestId(`add-book-button-${mockBook.id}`);
     fireEvent.click(addButton);
 
-    expect(addBookToReadingListMock).toHaveBeenCalledWith(mockBook);
+    await waitFor(() => {
+      expect(addBookToReadingListMock).toHaveBeenCalledWith(mockBook);
+      expect(setIsLoadingMock).toHaveBeenCalledWith(true);
+      expect(setIsLoadingMock).toHaveBeenCalledWith(false);
+
+      expect(setShowSnackbarAlertMock).toHaveBeenCalledWith(true);
+      expect(triggerSnackbarAlertMock).toHaveBeenCalledWith(
+        "Book added to reading list"
+      );
+    });
   });
 });

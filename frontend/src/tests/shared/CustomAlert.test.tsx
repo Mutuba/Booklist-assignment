@@ -1,29 +1,17 @@
 import React from "react";
 import { render, fireEvent, waitFor, screen } from "@testing-library/react";
-import CustomAlert from "../../components/shared/CustomAlert";
+import CustomAlert from "../../components/shared/SnackbarAlert";
+import { setShowSnackbarAlertMock } from "../mocks/ContextMocks";
 
 describe("CustomAlert Component", () => {
   test("renders alert with message and close button", async () => {
-    // Mock setShowAlert function
-    const setShowAlert = jest.fn();
-
-    render(
-      <CustomAlert
-        message="Test message"
-        severity="error"
-        setShowAlert={setShowAlert}
-      />
-    );
-
+    render(<CustomAlert />);
     expect(screen.getByRole("alert")).toHaveTextContent("Test message");
-
-    const closeButton = screen.getByLabelText("close");
+    const closeButton = screen.getByTestId("CloseIcon");
     expect(closeButton).toBeInTheDocument();
-
     fireEvent.click(closeButton);
-
     await waitFor(() => {
-      expect(setShowAlert).toHaveBeenCalledWith(false);
+      expect(setShowSnackbarAlertMock).toHaveBeenCalledWith(false);
     });
   });
 });

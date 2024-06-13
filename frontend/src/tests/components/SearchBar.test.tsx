@@ -1,8 +1,8 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import SearchBar from "../../components/SearchBar";
-import { ReadingListProvider } from "../../contexts/ReadingListContext";
 import userEvent from "@testing-library/user-event";
+import { addBookToReadingListMock } from "../mocks/ContextMocks";
 
 const mockBooks = [
   {
@@ -23,23 +23,11 @@ const mockBooks = [
 
 describe("SearchBar Component", () => {
   test("renders without crashing", () => {
-    render(
-      <SearchBar
-        books={mockBooks}
-        setSearchResults={() => {}}
-        addBookToReadingList={() => {}}
-      />
-    );
+    render(<SearchBar books={mockBooks} setSearchResults={() => {}} />);
   });
 
   test("renders the autocomplete component", () => {
-    render(
-      <SearchBar
-        books={mockBooks}
-        setSearchResults={() => {}}
-        addBookToReadingList={() => {}}
-      />
-    );
+    render(<SearchBar books={mockBooks} setSearchResults={() => {}} />);
     const autocompleteElement = screen.getByTestId(
       "search-results-autocomplete"
     );
@@ -47,27 +35,13 @@ describe("SearchBar Component", () => {
   });
 
   test("renders the text field", () => {
-    render(
-      <SearchBar
-        books={mockBooks}
-        setSearchResults={() => {}}
-        addBookToReadingList={() => {}}
-      />
-    );
+    render(<SearchBar books={mockBooks} setSearchResults={() => {}} />);
     const textFieldElement = screen.getByLabelText("Search Books");
     expect(textFieldElement).toBeInTheDocument();
   });
 
   test("filters options based on user input", async () => {
-    render(
-      <ReadingListProvider>
-        <SearchBar
-          books={mockBooks}
-          setSearchResults={() => {}}
-          addBookToReadingList={() => {}}
-        />
-      </ReadingListProvider>
-    );
+    render(<SearchBar books={mockBooks} setSearchResults={() => {}} />);
     const textFieldElement = screen.getByLabelText("Search Books");
     userEvent.type(textFieldElement, "Book 1");
 
@@ -81,16 +55,9 @@ describe("SearchBar Component", () => {
 
   test("renders the BookDetail component when a user selects an option", async () => {
     const setSearchResultsMock = jest.fn();
-    const addBookToReadingListMock = jest.fn();
 
     render(
-      <ReadingListProvider>
-        <SearchBar
-          books={mockBooks}
-          setSearchResults={setSearchResultsMock}
-          addBookToReadingList={addBookToReadingListMock}
-        />
-      </ReadingListProvider>
+      <SearchBar books={mockBooks} setSearchResults={setSearchResultsMock} />
     );
     const textFieldElement = screen.getByLabelText("Search Books");
     userEvent.type(textFieldElement, "Book 1");

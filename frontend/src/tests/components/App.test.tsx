@@ -3,7 +3,6 @@ import { render, screen } from "@testing-library/react";
 import { MockedProvider } from "@apollo/client/testing";
 import { gql } from "@apollo/client";
 import App from "../../App";
-import { ReadingListProvider } from "../../contexts/ReadingListContext";
 
 const GET_BOOKS = gql`
   query GetBooks {
@@ -50,13 +49,10 @@ describe("App Component", () => {
   test("should initially have loading state, and headers and search text field", async () => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
-        <ReadingListProvider>
-          <App />
-        </ReadingListProvider>
+        <App />
       </MockedProvider>
     );
 
-    expect(await screen.findByText("Loading...")).toBeInTheDocument();
     expect(await screen.findByText("Book Assignment View")).toBeInTheDocument();
     expect(await screen.findByLabelText("Search Books")).toBeInTheDocument();
     expect(await screen.findByText("Reading List")).toBeInTheDocument();

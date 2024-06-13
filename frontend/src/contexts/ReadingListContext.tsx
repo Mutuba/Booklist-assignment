@@ -9,7 +9,9 @@ interface ReadingListContextProps {
 interface ReadingListProviderProps {
   children: ReactNode;
   value?: {
-    readingList: Book[];
+    readingList?: Book[];
+    addBookToReadingList?: (book: Book) => void;
+    removeBookFromReadingList?: (book: Book) => void;
   };
 }
 

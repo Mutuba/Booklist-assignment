@@ -1,6 +1,13 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import ReadingList from "../../components/ReadingList";
+import {
+  removeBookMock,
+  addBookToReadingListMock,
+  setIsLoadingMock,
+  setShowSnackbarAlertMock,
+  triggerSnackbarAlertMock,
+} from "../mocks/ContextMocks";
 
 const mockBooks = [
   {
@@ -20,10 +27,14 @@ const mockBooks = [
 ];
 
 describe("ReadingList Component", () => {
+  beforeEach(() => {
+    addBookToReadingListMock.mockClear();
+    setIsLoadingMock.mockClear();
+    setShowSnackbarAlertMock.mockClear();
+    triggerSnackbarAlertMock.mockClear();
+  });
   test("renders with list of books", () => {
-    render(
-      <ReadingList books={mockBooks} removeBookFromReadingList={() => {}} />
-    );
+    render(<ReadingList books={mockBooks} />);
 
     expect(screen.getByText("Reading List")).toBeInTheDocument();
 
@@ -37,14 +48,7 @@ describe("ReadingList Component", () => {
   });
 
   test("calls removeBookFromReadingList when removing a book", async () => {
-    const removeBookMock = jest.fn();
-
-    render(
-      <ReadingList
-        books={mockBooks}
-        removeBookFromReadingList={removeBookMock}
-      />
-    );
+    render(<ReadingList books={mockBooks} />);
 
     fireEvent.click(screen.getByTestId("remove-book-button-1"));
 

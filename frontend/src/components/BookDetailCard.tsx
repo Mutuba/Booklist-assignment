@@ -9,20 +9,29 @@ import {
   Avatar,
   Typography,
 } from "@mui/material";
-import DividerVariants from "./shared/CustomDivider";
 import { Book } from "../interfaces/Book";
 import { useCoverPhotoURL } from "../../useCoverPhotoURL";
+import { useLoading } from "../contexts/LoadingContext";
+import { useReadingList } from "../contexts/ReadingListContext";
+import { useAlert } from "../contexts/SnackbarAlertContext";
 
 interface BookDetailCardProps {
   book: Book;
-  removeBookFromReadingList: (book: Book) => void;
 }
 
-const BookDetailCard: React.FC<BookDetailCardProps> = ({
-  book,
-  removeBookFromReadingList,
-}) => {
+const BookDetailCard: React.FC<BookDetailCardProps> = ({ book }) => {
   const avatarSrc = useCoverPhotoURL(book.coverPhotoURL);
+  const { setIsLoading } = useLoading();
+  const { removeBookFromReadingList } = useReadingList();
+  const { setShowSnackbarAlert, triggerSnackbarAlert } = useAlert();
+
+  const handleRemoveBook = async (book: Book) => {
+    setIsLoading(true);
+    removeBookFromReadingList(book);
+    setIsLoading(false);
+    setShowSnackbarAlert(true);
+    triggerSnackbarAlert("Book removed from reading list");
+  };
 
   return (
     <Grid item md={4} sm={12} xs={12}>
@@ -75,13 +84,12 @@ const BookDetailCard: React.FC<BookDetailCardProps> = ({
             size="small"
             data-testid={`remove-book-button-${book.id}`}
             sx={{ color: "#fff", mb: 2, textTransform: "none" }}
-            onClick={() => removeBookFromReadingList(book)}
+            onClick={() => handleRemoveBook(book)}
           >
             Remove from Reading List
           </Button>
         </CardActions>
       </Card>
-      <DividerVariants />
     </Grid>
   );
 };
