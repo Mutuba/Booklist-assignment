@@ -4,6 +4,7 @@ import React, {
   useState,
   ReactNode,
   useCallback,
+  useMemo,
 } from "react";
 
 interface SnackbarAlertContextProps {
@@ -16,10 +17,10 @@ interface SnackbarAlertContextProps {
 interface SnackbarAlertProviderProps {
   children: ReactNode;
   value?: {
-    showSnackbarAlert?: false;
+    showSnackbarAlert?: boolean;
     setShowSnackbarAlert?: React.Dispatch<React.SetStateAction<boolean>>;
-    snackbarAlertMessage?: "";
-    triggerSnackbarAlert?: React.Dispatch<React.SetStateAction<boolean>>;
+    snackbarAlertMessage?: string;
+    triggerSnackbarAlert?: (message: string) => void;
   };
 }
 
@@ -30,37 +31,55 @@ const SnackbarAlertContext = createContext<SnackbarAlertContextProps | null>(
 export const useSnackbarAlert = () => {
   const context = useContext(SnackbarAlertContext);
   if (!context) {
-    throw new Error("useAlert must be used within an AlertProvider");
+    throw new Error(
+      "useSnackbarAlert must be used within a SnackbarAlertProvider"
+    );
   }
   return context;
 };
 
-export const SnackBarAlertProvider: React.FC<SnackbarAlertProviderProps> = ({
+export const SnackbarAlertProvider: React.FC<SnackbarAlertProviderProps> = ({
   children,
+  value,
 }) => {
-  const [showSnackbarAlert, setShowSnackbarAlert] = useState(false);
-  const [snackbarAlertMessage, setSnackbarAlertMessage] = useState("");
+  const [internalShowSnackbarAlert, setShowSnackbarAlertState] =
+    useState<boolean>(value?.showSnackbarAlert ?? false);
+  const [internalSnackbarAlertMessage, setSnackbarAlertMessageState] =
+    useState<string>(value?.snackbarAlertMessage ?? "");
 
-  const triggerSnackbarAlert = useCallback(
-    (message: string) => {
-      setShowSnackbarAlert(false);
-      setTimeout(() => {
-        setSnackbarAlertMessage(message);
-        setShowSnackbarAlert(true);
-      }, 100); // Small delay to ensure the state updates properly
-    },
-    [setShowSnackbarAlert, setSnackbarAlertMessage]
+  const setShowSnackbarAlert =
+    value?.setShowSnackbarAlert ?? setShowSnackbarAlertState;
+
+  const triggerSnackbarAlert =
+    value?.triggerSnackbarAlert ??
+    useCallback(
+      (message: string) => {
+        setShowSnackbarAlert(false);
+        setTimeout(() => {
+          setSnackbarAlertMessageState(message);
+          setShowSnackbarAlert(true);
+        }, 100); // Small delay to ensure the state updates properly
+      },
+      [setShowSnackbarAlert]
+    );
+
+  const contextValue = useMemo(
+    () => ({
+      showSnackbarAlert: internalShowSnackbarAlert,
+      setShowSnackbarAlert,
+      snackbarAlertMessage: internalSnackbarAlertMessage,
+      triggerSnackbarAlert,
+    }),
+    [
+      internalShowSnackbarAlert,
+      setShowSnackbarAlert,
+      internalSnackbarAlertMessage,
+      triggerSnackbarAlert,
+    ]
   );
 
   return (
-    <SnackbarAlertContext.Provider
-      value={{
-        showSnackbarAlert,
-        setShowSnackbarAlert,
-        snackbarAlertMessage,
-        triggerSnackbarAlert,
-      }}
-    >
+    <SnackbarAlertContext.Provider value={contextValue}>
       {children}
     </SnackbarAlertContext.Provider>
   );

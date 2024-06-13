@@ -20,7 +20,7 @@ module.exports = {
     // asserting on DOM elements in your tests. These matchers enhance the
     // readability and expressiveness of your test assertions.
     "<rootDir>/jest.setup.ts",
-    "<rootDir>/src/tests/mocks/ContextMocks.ts",
+    "<rootDir>/src/tests/mocks/Mocks.ts",
   ],
 
   // Instructing jest to use identity-obj-proxy for any import statement

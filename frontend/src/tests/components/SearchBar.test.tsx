@@ -2,32 +2,34 @@ import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import SearchBar from "../../components/SearchBar";
 import userEvent from "@testing-library/user-event";
-import { addBookToReadingListMock } from "../mocks/ContextMocks";
-
-const mockBooks = [
-  {
-    id: "1",
-    title: "Book 1",
-    author: "Author 1",
-    coverPhotoURL: "http://localhost:3000/assets/image1.webp",
-    readingLevel: "A",
-  },
-  {
-    id: "2",
-    title: "Book 2",
-    author: "Author 1",
-    coverPhotoURL: "http://localhost:3000/assets/image1.webp",
-    readingLevel: "A",
-  },
-];
+import { addBookToReadingListMock, mockBooks } from "../mocks/Mocks";
+import { ReadingListProvider } from "../../contexts/ReadingListContext";
+import { LoadingProvider } from "../../contexts/LoadingContext";
+import { SnackbarAlertProvider } from "../../contexts/SnackbarAlertContext";
 
 describe("SearchBar Component", () => {
   test("renders without crashing", () => {
-    render(<SearchBar books={mockBooks} setSearchResults={() => {}} />);
+    render(
+      <ReadingListProvider value={{ readingList: mockBooks }}>
+        <LoadingProvider>
+          <SnackbarAlertProvider>
+            <SearchBar books={mockBooks} setSearchResults={() => {}} />
+          </SnackbarAlertProvider>
+        </LoadingProvider>
+      </ReadingListProvider>
+    );
   });
 
   test("renders the autocomplete component", () => {
-    render(<SearchBar books={mockBooks} setSearchResults={() => {}} />);
+    render(
+      <ReadingListProvider value={{ readingList: mockBooks }}>
+        <LoadingProvider>
+          <SnackbarAlertProvider>
+            <SearchBar books={mockBooks} setSearchResults={() => {}} />
+          </SnackbarAlertProvider>
+        </LoadingProvider>
+      </ReadingListProvider>
+    );
     const autocompleteElement = screen.getByTestId(
       "search-results-autocomplete"
     );
@@ -35,13 +37,29 @@ describe("SearchBar Component", () => {
   });
 
   test("renders the text field", () => {
-    render(<SearchBar books={mockBooks} setSearchResults={() => {}} />);
+    render(
+      <ReadingListProvider value={{ readingList: mockBooks }}>
+        <LoadingProvider>
+          <SnackbarAlertProvider>
+            <SearchBar books={mockBooks} setSearchResults={() => {}} />
+          </SnackbarAlertProvider>
+        </LoadingProvider>
+      </ReadingListProvider>
+    );
     const textFieldElement = screen.getByLabelText("Search books");
     expect(textFieldElement).toBeInTheDocument();
   });
 
   test("filters options based on user input", async () => {
-    render(<SearchBar books={mockBooks} setSearchResults={() => {}} />);
+    render(
+      <ReadingListProvider value={{ readingList: mockBooks }}>
+        <LoadingProvider>
+          <SnackbarAlertProvider>
+            <SearchBar books={mockBooks} setSearchResults={() => {}} />
+          </SnackbarAlertProvider>
+        </LoadingProvider>
+      </ReadingListProvider>
+    );
     const textFieldElement = screen.getByLabelText("Search books");
     userEvent.type(textFieldElement, "Book 1");
 
@@ -54,10 +72,19 @@ describe("SearchBar Component", () => {
   });
 
   test("renders the BookDetail component when a user selects an option", async () => {
-    const setSearchResultsMock = jest.fn();
-
     render(
-      <SearchBar books={mockBooks} setSearchResults={setSearchResultsMock} />
+      <ReadingListProvider
+        value={{
+          readingList: [],
+          addBookToReadingList: addBookToReadingListMock,
+        }}
+      >
+        <LoadingProvider>
+          <SnackbarAlertProvider>
+            <SearchBar books={mockBooks} setSearchResults={() => {}} />
+          </SnackbarAlertProvider>
+        </LoadingProvider>
+      </ReadingListProvider>
     );
     const textFieldElement = screen.getByLabelText("Search books");
     userEvent.type(textFieldElement, "Book 1");

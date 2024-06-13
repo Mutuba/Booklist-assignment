@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useMemo,
+} from "react";
 
 interface LoadingContextProps {
   isLoading: boolean;
@@ -8,7 +14,7 @@ interface LoadingContextProps {
 interface LoadingProviderProps {
   children: ReactNode;
   value?: {
-    isLoading?: false;
+    isLoading?: boolean;
     setIsLoading?: React.Dispatch<React.SetStateAction<boolean>>;
   };
 }
@@ -25,11 +31,24 @@ export const useLoading = () => {
 
 export const LoadingProvider: React.FC<LoadingProviderProps> = ({
   children,
+  value,
 }) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [internalIsLoading, setInternalIsLoading] = useState<boolean>(
+    value?.isLoading ?? false
+  );
+
+  const setIsLoading = value?.setIsLoading ?? setInternalIsLoading;
+
+  const contextValue = useMemo(
+    () => ({
+      isLoading: internalIsLoading,
+      setIsLoading,
+    }),
+    [internalIsLoading, setIsLoading]
+  );
 
   return (
-    <LoadingContext.Provider value={{ isLoading, setIsLoading }}>
+    <LoadingContext.Provider value={contextValue}>
       {children}
     </LoadingContext.Provider>
   );

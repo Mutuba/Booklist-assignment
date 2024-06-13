@@ -1,19 +1,28 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import BookDetailCard from "../../components/BookDetailCard";
-import { removeBookMock } from "../mocks/ContextMocks";
-
-const mockBook = {
-  id: "1",
-  title: "Book 1",
-  author: "Author 1",
-  coverPhotoURL: "image1.webp",
-  readingLevel: "A",
-};
+import {
+  mockBook,
+  removeBookMock,
+  setIsLoadingMock,
+  triggerSnackbarAlertMock,
+  setShowSnackbarAlertMock,
+} from "../mocks/Mocks";
+import { ReadingListProvider } from "../../contexts/ReadingListContext";
+import { LoadingProvider } from "../../contexts/LoadingContext";
+import { SnackbarAlertProvider } from "../../contexts/SnackbarAlertContext";
 
 describe("BookDetailCard Component", () => {
   test("renders book details correctly", () => {
-    render(<BookDetailCard book={mockBook} />);
+    render(
+      <ReadingListProvider value={{ readingList: [mockBook] }}>
+        <LoadingProvider>
+          <SnackbarAlertProvider>
+            <BookDetailCard book={mockBook} />
+          </SnackbarAlertProvider>
+        </LoadingProvider>
+      </ReadingListProvider>
+    );
 
     expect(screen.getByText(mockBook.title)).toBeInTheDocument();
     expect(screen.getByText(`Author: ${mockBook.author}`)).toBeInTheDocument();
@@ -27,7 +36,25 @@ describe("BookDetailCard Component", () => {
   });
 
   test("calls removeBookFromReadingList when remove button is clicked", () => {
-    render(<BookDetailCard book={mockBook} />);
+    render(
+      <ReadingListProvider
+        value={{
+          readingList: [mockBook],
+          removeBookFromReadingList: removeBookMock,
+        }}
+      >
+        <LoadingProvider value={{ setIsLoading: setIsLoadingMock }}>
+          <SnackbarAlertProvider
+            value={{
+              setShowSnackbarAlert: setShowSnackbarAlertMock,
+              triggerSnackbarAlert: triggerSnackbarAlertMock,
+            }}
+          >
+            <BookDetailCard book={mockBook} />
+          </SnackbarAlertProvider>
+        </LoadingProvider>
+      </ReadingListProvider>
+    );
     const removeButton = screen.getByTestId(
       `remove-book-button-${mockBook.id}`
     );

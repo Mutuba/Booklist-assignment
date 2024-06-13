@@ -30,7 +30,6 @@ const BookDetail: React.FC<BookProps> = ({ book }) => {
     if (
       !readingList.some((readingListBook) => readingListBook.id === book.id)
     ) {
-      console.log("Just checking");
       setIsLoading(true);
       addBookToReadingList(book);
       setIsLoading(false);

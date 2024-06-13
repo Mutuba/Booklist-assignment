@@ -7,21 +7,16 @@ import {
   cleanup,
 } from "@testing-library/react";
 import BookDetail from "../../components/BookDetail";
-import { Book } from "../../interfaces/Book";
 import {
+  mockBook,
   addBookToReadingListMock,
   setIsLoadingMock,
   triggerSnackbarAlertMock,
   setShowSnackbarAlertMock,
-} from "../mocks/ContextMocks";
-
-const mockBook: Book = {
-  id: "1",
-  title: "Book 1",
-  author: "Author 1",
-  coverPhotoURL: "image1.webp",
-  readingLevel: "A",
-};
+} from "../mocks/Mocks";
+import { ReadingListProvider } from "../../contexts/ReadingListContext";
+import { LoadingProvider } from "../../contexts/LoadingContext";
+import { SnackbarAlertProvider } from "../../contexts/SnackbarAlertContext";
 
 describe("BookDetail Component", () => {
   beforeEach(() => {
@@ -29,7 +24,15 @@ describe("BookDetail Component", () => {
   });
 
   test("renders book details correctly", () => {
-    render(<BookDetail book={mockBook} />);
+    render(
+      <ReadingListProvider value={{ readingList: [mockBook] }}>
+        <LoadingProvider>
+          <SnackbarAlertProvider>
+            <BookDetail book={mockBook} />
+          </SnackbarAlertProvider>
+        </LoadingProvider>
+      </ReadingListProvider>
+    );
 
     expect(screen.getByText(mockBook.title)).toBeInTheDocument();
     expect(
@@ -41,8 +44,25 @@ describe("BookDetail Component", () => {
   });
 
   test("calls addBookToReadingList when add button is clicked", async () => {
-    render(<BookDetail book={mockBook} />);
-
+    render(
+      <ReadingListProvider
+        value={{
+          readingList: [],
+          addBookToReadingList: addBookToReadingListMock,
+        }}
+      >
+        <LoadingProvider value={{ setIsLoading: setIsLoadingMock }}>
+          <SnackbarAlertProvider
+            value={{
+              setShowSnackbarAlert: setShowSnackbarAlertMock,
+              triggerSnackbarAlert: triggerSnackbarAlertMock,
+            }}
+          >
+            <BookDetail book={mockBook} />
+          </SnackbarAlertProvider>
+        </LoadingProvider>
+      </ReadingListProvider>
+    );
     const addButton = screen.getByTestId(`add-book-button-${mockBook.id}`);
     fireEvent.click(addButton);
 

@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useMemo,
+} from "react";
 import { Book } from "../interfaces/Book";
 
 interface ReadingListContextProps {
@@ -6,6 +12,7 @@ interface ReadingListContextProps {
   addBookToReadingList: (book: Book) => void;
   removeBookFromReadingList: (book: Book) => void;
 }
+
 interface ReadingListProviderProps {
   children: ReactNode;
   value?: {
@@ -27,21 +34,39 @@ export const useReadingList = () => {
 
 export const ReadingListProvider: React.FC<ReadingListProviderProps> = ({
   children,
+  value,
 }) => {
-  const [readingList, setReadingList] = useState<Book[]>([]);
+  const [internalReadingList, setReadingList] = useState<Book[]>(
+    value?.readingList || []
+  );
 
-  const addBookToReadingList = (book: Book) => {
-    setReadingList((prevList) => [...prevList, book]);
-  };
+  const addBookToReadingList =
+    value?.addBookToReadingList ||
+    ((book: Book) => {
+      setReadingList((prevReadingList) => [...prevReadingList, book]);
+    });
 
-  const removeBookFromReadingList = (book: Book) => {
-    setReadingList((prevList) => prevList.filter((b) => b.id !== book.id));
-  };
+  const removeBookFromReadingList =
+    value?.removeBookFromReadingList ||
+    ((book: Book) => {
+      setReadingList((prevReadingList) =>
+        prevReadingList.filter(
+          (prevReadingListBook) => prevReadingListBook.id !== book.id
+        )
+      );
+    });
+
+  const contextValue = useMemo(
+    () => ({
+      readingList: internalReadingList,
+      addBookToReadingList,
+      removeBookFromReadingList,
+    }),
+    [internalReadingList, addBookToReadingList, removeBookFromReadingList]
+  );
 
   return (
-    <ReadingListContext.Provider
-      value={{ readingList, addBookToReadingList, removeBookFromReadingList }}
-    >
+    <ReadingListContext.Provider value={contextValue}>
       {children}
     </ReadingListContext.Provider>
   );
