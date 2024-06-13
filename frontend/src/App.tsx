@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { Container, Typography } from "@mui/material";
 import ReadingList from "./components/ReadingList";
 import SearchBar from "./components/SearchBar";
@@ -9,18 +9,7 @@ import { useReadingList } from "../../frontend/src/contexts/ReadingListContext";
 import Loader from "./components/shared/Loader";
 import { useLoading } from "./contexts/LoadingContext";
 import { useAlert } from "./contexts/SnackbarAlertContext";
-
-const GET_BOOKS = gql`
-  query GetBooks {
-    books {
-      id
-      title
-      author
-      coverPhotoURL
-      readingLevel
-    }
-  }
-`;
+import { GET_BOOKS } from "../src/graphql/books/queries";
 
 const App: React.FC = () => {
   const { loading, error, data } = useQuery<{ books: Book[] }>(GET_BOOKS);
