@@ -1,13 +1,7 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, cleanup } from "@testing-library/react";
 import ReadingList from "../../components/ReadingList";
-import {
-  removeBookMock,
-  addBookToReadingListMock,
-  setIsLoadingMock,
-  setShowSnackbarAlertMock,
-  triggerSnackbarAlertMock,
-} from "../mocks/ContextMocks";
+import { removeBookMock } from "../mocks/ContextMocks";
 
 const mockBooks = [
   {
@@ -28,10 +22,7 @@ const mockBooks = [
 
 describe("ReadingList Component", () => {
   beforeEach(() => {
-    addBookToReadingListMock.mockClear();
-    setIsLoadingMock.mockClear();
-    setShowSnackbarAlertMock.mockClear();
-    triggerSnackbarAlertMock.mockClear();
+    cleanup();
   });
   test("renders with list of books", () => {
     render(<ReadingList books={mockBooks} />);

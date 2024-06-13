@@ -1,5 +1,11 @@
 import React from "react";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import {
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+  cleanup,
+} from "@testing-library/react";
 import BookDetail from "../../components/BookDetail";
 import { Book } from "../../interfaces/Book";
 import {
@@ -19,10 +25,7 @@ const mockBook: Book = {
 
 describe("BookDetail Component", () => {
   beforeEach(() => {
-    addBookToReadingListMock.mockClear();
-    setIsLoadingMock.mockClear();
-    setShowSnackbarAlertMock.mockClear();
-    triggerSnackbarAlertMock.mockClear();
+    cleanup();
   });
 
   test("renders book details correctly", () => {

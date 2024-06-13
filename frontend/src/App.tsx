@@ -30,7 +30,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <Container maxWidth="md" style={{ marginTop: "6rem" }}>
+    <Container maxWidth="md" style={{ marginTop: "4rem" }}>
       {loading || isLoading ? (
         <Loader />
       ) : (

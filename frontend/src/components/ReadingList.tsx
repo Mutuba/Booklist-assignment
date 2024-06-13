@@ -10,7 +10,11 @@ interface ReadingListProps {
 const ReadingList: React.FC<ReadingListProps> = ({ books }) => {
   return (
     <Container maxWidth="md" style={{ marginTop: "3rem" }}>
-      <Typography variant="h2" gutterBottom style={{ textAlign: "center" }}>
+      <Typography
+        variant="h2"
+        gutterBottom
+        style={{ textAlign: "center", paddingBottom: "3rem" }}
+      >
         Reading List
       </Typography>
       <div
