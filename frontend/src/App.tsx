@@ -37,7 +37,7 @@ const App: React.FC = () => {
         <>
           {showSnackbarAlert && <SnackbarAlert />}
           <Typography
-            variant="h2"
+            variant="h3"
             gutterBottom
             style={{ textAlign: "center", padding: "2rem" }}
           >

@@ -11,7 +11,7 @@ const ReadingList: React.FC<ReadingListProps> = ({ books }) => {
   return (
     <Container maxWidth="md" style={{ marginTop: "3rem" }}>
       <Typography
-        variant="h2"
+        variant="h3"
         gutterBottom
         style={{ textAlign: "center", paddingBottom: "3rem" }}
       >
