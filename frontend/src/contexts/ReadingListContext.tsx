@@ -52,7 +52,6 @@ export const ReadingListProvider: React.FC<ReadingListProviderProps> = ({
       }
     });
 
-  console.log("Adding book to reading list", value?.readingList);
   const removeBookFromReadingList =
     value?.removeBookFromReadingList ??
     ((book: Book) => {
