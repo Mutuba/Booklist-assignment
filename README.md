@@ -104,7 +104,9 @@ When a user removes a book from the reading list, the operation is real-time, th
 
 ## Design and Responsiveness 
 
-The UI has been designed using pure material UI components with minor modifications. There are reusable components such as ones that show alerts and loading states. The app is fully responsive with the cards flexing for the viewport. The UI color choice avoids bright colors, keeping it simple and using Ello website color to make the application familiar.
+The UI has been designed using pure material UI components with minor modifications. There are reusable components such as ones that show alerts and loading states. The app is fully responsive with the cards flexing for the viewport. The UI color choice avoids bright colors, keeping it simple and using Ello website color.
+
+
 <img width="235" alt="Screenshot 2024-06-14 at 15 07 17" src="https://github.com/Mutuba/Booklist-assignment/assets/39365725/94c92efb-6927-4846-b459-0822447e9d97">
 <img width="235" alt="Screenshot 2024-06-14 at 15 08 15" src="https://github.com/Mutuba/Booklist-assignment/assets/39365725/3ad08f48-147d-419f-9540-61061f60e8e2">
 
