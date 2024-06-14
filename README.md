@@ -4,52 +4,6 @@
 
 # Output/Solution
 
-File Structure
-
-.  
-├── src  
-│   ├── App.tsx  
-│   ├── components  
-│   │   ├── BookDetail.tsx  
-│   │   ├── BookDetailCard.tsx  
-│   │   ├── ReadingList.tsx  
-│   │   ├── SearchBar.tsx  
-│   │   └── shared  
-│   ├── contexts  
-│   │   ├── LoadingContext.tsx  
-│   │   ├── ReadingListContext.tsx  
-│   │   └── SnackbarAlertContext.tsx  
-│   ├── graphql  
-│   │   └── books  
-│   ├── index.css  
-│   ├── index.tsx  
-│   ├── interfaces  
-│   │   └── Book.ts  
-│   ├── tests  
-│   │   ├── components  
-│   │   │   ├── BookDetail.test.jsx  
-│   │   │   ├── BookDetailCard.test.jsx  
-│   │   │   ├── ReadingList.test.jsx  
-│   │   │   └── SearchBar.test.jsx  
-│   │   ├── contexts  
-│   │   │   ├── LoadingContext.test.jsx  
-│   │   │   ├── ReadingListContext.test.jsx  
-│   │   │   └── SnackbarAlertContext.test.jsx  
-│   │   ├── mocks  
-│   │   │   └── MockData.ts  
-│   │   └── shared  
-│   │       └── SnackbarAlert.test.jsx  
-│   └── theme.ts  
-├── jest.config.js  
-├── jest.setup.ts  
-├── package-lock.json  
-├── package.json  
-├── public  
-│   └── index.html  
-├── tsconfig.json  
-├── useCoverPhotoURL.tsx  
-└── webpack.config.js
-
 Below is the solution for the challenge. I have provided sample screenshots.
 
 To start the app, while at the root, you can run `npm run start` that will start concurrently both the backend and front end apps on their respective ports.
