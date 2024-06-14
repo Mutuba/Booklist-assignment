@@ -33,7 +33,7 @@ const App: React.FC = () => {
   return (
     <>
       <ElloAppBar />
-      <Container maxWidth="md" style={{ marginTop: "4rem" }}>
+      <Container maxWidth="md" style={{ marginTop: "3rem" }}>
         {loading || isLoading ? (
           <Loader />
         ) : (
