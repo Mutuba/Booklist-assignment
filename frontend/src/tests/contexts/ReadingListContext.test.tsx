@@ -1,12 +1,20 @@
-import React, { useEffect } from "react";
-import { cleanup, render, screen, waitFor } from "../TestUtil";
+import React, { useEffect, ReactElement } from "react";
+import { render, screen, waitFor, cleanup } from "@testing-library/react";
+import { ReadingListProvider } from "../../contexts/ReadingListContext";
 import { useReadingList } from "../../contexts/ReadingListContext";
 import { mockBook } from "../mocks/Mocks";
 
 describe("ReadingList", () => {
+  const customRender = (ui: ReactElement, providerProps = {}) => {
+    return render(
+      <ReadingListProvider {...providerProps}>{ui}</ReadingListProvider>
+    );
+  };
+
   beforeEach(() => {
     cleanup();
   });
+
   const TestComponent = () => {
     const { readingList } = useReadingList();
     return (
@@ -19,7 +27,7 @@ describe("ReadingList", () => {
   };
 
   test("initializes with an empty reading list", () => {
-    render(<TestComponent />);
+    customRender(<TestComponent />);
     expect(screen.getByText("No books")).toBeInTheDocument();
   });
 
@@ -36,7 +44,7 @@ describe("ReadingList", () => {
   };
 
   test("adds a book to the reading list", async () => {
-    render(<AddBookComponent />);
+    customRender(<AddBookComponent />);
     const addButton = screen.getByText("Add Book");
     await waitFor(() => {
       addButton.click();
@@ -68,9 +76,9 @@ describe("ReadingList", () => {
   };
 
   test("removes a book from the reading list", async () => {
-    render(<RemoveBookComponent />);
+    customRender(<RemoveBookComponent />);
     const removeButton = screen.getByText("Remove Book");
-    // Assert that the there is a book listed on render
+    // Assert that the there is a book listed on mount
     expect(screen.getByText(`${mockBook.title}`)).toBeInTheDocument();
     await waitFor(() => {
       removeButton.click();
