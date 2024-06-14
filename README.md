@@ -96,23 +96,25 @@ The application has been tested. To run tests, you can cd directory into the fro
 
 On the home page, the user is greeted by an awesome loader and then a screen that has a search input field with the placeholder `Search books`. Upon clicking into the field, a scrollable book search results pop up. The lists dynamically update based on matching filters as per user input. Clicking on the `Add` icon on any of the search result items adds the book to the reading list and a check badge is added to the search result indicating the book has been added to the reading list. At the same time, the user sees a snack bar alert `Book added to the reading list`  
 The user can click outside or use the escape key `esc`  to close/hide the scrollable search results.
-
-<img width="1433" alt="Screenshot 2024-06-14 at 15 23 08" src="https://github.com/Mutuba/Booklist-assignment/assets/39365725/60ce5397-2c4f-4148-b840-7e3ed3de00da">
-<img width="1436" alt="Screenshot 2024-06-14 at 15 26 43" src="https://github.com/Mutuba/Booklist-assignment/assets/39365725/af59be20-ab91-415f-be92-d48528162290">
+<img width="1439" alt="Screenshot 2024-06-14 at 20 33 51" src="https://github.com/Mutuba/Booklist-assignment/assets/39365725/22a2b6b4-03ee-438a-9e83-ad6f0b0809fa">
 
 
 ## Access the Reading list and Remove Books
 
 When a user adds a book to the reading list, the operation is real-time, the user will see the book appear in the reading list section below the search field. The user can scroll through this list of books presented in cards and optionally remove a book from the list by clicking on the `Remove from Reading List` button available on each book card. The presentation is neat, each card has an image of the book, a visible title, and details about the author and reading level.  
 When a user removes a book from the reading list, the operation is real-time, the book gets removed and the user sees a snack bar alert `Book removed from reading list`  
+<img width="1440" alt="Screenshot 2024-06-14 at 20 33 30" src="https://github.com/Mutuba/Booklist-assignment/assets/39365725/05c95450-889d-45a2-8551-50ce805f4f7b">
 
-<img width="1429" alt="Screenshot 2024-06-14 at 15 27 11" src="https://github.com/Mutuba/Booklist-assignment/assets/39365725/915f032d-b2c1-44aa-a934-c1d47d51d63c">
 
 ## Design and Responsiveness
 
-The UI has been designed using pure material UI components with minor modifications. There are reusable components such as ones that show alerts and loading states. The app is fully responsive with the cards flexing to view port. The UI color choice avoids bright colors, keeping it simple and using Ello website color to make the application familiar.
+The UI has been designed using pure material UI components with minor modifications. There are reusable components such as ones that show alerts and loading states. The app is fully responsive with the cards flexing to view port. The UI color choice avoids bright colors, keeping it simple and using Ello website color to familiarize the application.
 
-<img width="217" alt="Screenshot 2024-06-14 at 15 39 44" src="https://github.com/Mutuba/Booklist-assignment/assets/39365725/b12b40ed-cc11-4fa3-adc3-2e0a69a5cce6">
-<img width="218" alt="Screenshot 2024-06-14 at 15 42 24" src="https://github.com/Mutuba/Booklist-assignment/assets/39365725/6dacf211-213d-4c39-8602-61e2e6f86409">
+
+<img width="216" alt="Screenshot 2024-06-14 at 20 35 06" src="https://github.com/Mutuba/Booklist-assignment/assets/39365725/29fa7c54-0808-4c19-a0d8-1168ae3e873a">
+
+<img width="217" alt="Screenshot 2024-06-14 at 20 34 41" src="https://github.com/Mutuba/Booklist-assignment/assets/39365725/55ac9c2b-660b-4c0d-900c-8c4c88aec9cd">
+
+
 
 
