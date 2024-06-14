@@ -18,6 +18,7 @@ const SnackbarAlert: React.FC = () => {
       autoHideDuration={3000}
       onClose={handleClose}
       anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      style={{ top: "5rem", zIndex: 9999 }}
     >
       <Alert icon={<CheckIcon />} onClose={handleClose}>
         {snackbarAlertMessage}
