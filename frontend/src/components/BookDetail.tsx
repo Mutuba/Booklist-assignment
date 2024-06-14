@@ -62,6 +62,7 @@ const BookDetail: React.FC<BookProps> = ({ book }) => {
           aria-label="Add"
           onClick={() => handleAddBook(book)}
           disabled={isInReadingList}
+          color="primary"
         >
           <AddIcon data-testid={`add-book-button-${book.id}`} />
         </IconButton>
