@@ -1,4 +1,3 @@
-// src/theme.ts
 import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
@@ -40,7 +39,7 @@ const theme = createTheme({
       main: "#5ACCCC",
     },
     secondary: {
-      main: "#5ACCCC",
+      main: "#CFFAFA",
     },
   },
   components: {
@@ -52,8 +51,14 @@ const theme = createTheme({
             color: "#fff",
           },
           "&.MuiButton-secondary": {
-            backgroundColor: "#53C2C2",
-            color: "#fff",
+            backgroundColor: "#CFFAFA",
+            color: "primary",
+          },
+        },
+        contained: {
+          "&.Mui-disabled": {
+            backgroundColor: "#CFFAFA",
+            color: "primary",
           },
         },
       },
