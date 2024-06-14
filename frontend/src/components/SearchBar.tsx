@@ -1,4 +1,4 @@
-import React from "react";
+import React, { SetStateAction, Dispatch } from "react";
 import { TextField, Autocomplete } from "@mui/material";
 import BookDetail from "./BookDetail";
 import CustomDivider from "./shared/CustomDivider";
@@ -6,7 +6,7 @@ import { Book } from "../interfaces/Book";
 
 interface SearchBarProps {
   books: Book[];
-  setSearchResults: React.Dispatch<React.SetStateAction<Book[]>>;
+  setSearchResults: Dispatch<SetStateAction<Book[]>>;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ books, setSearchResults }) => {
