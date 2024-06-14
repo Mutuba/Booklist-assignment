@@ -53,7 +53,7 @@ const BookDetail: React.FC<BookProps> = ({ book }) => {
             badgeContent={<CheckCircleIcon color="primary" />}
             overlap="circular"
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-            style={{ marginRight: "1rem" }}
+            style={{ marginLeft: "1rem", marginRight: "2rem" }}
           />
         )}
       </Box>
