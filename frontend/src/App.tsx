@@ -41,7 +41,7 @@ const App: React.FC = () => {
             gutterBottom
             style={{ textAlign: "center", padding: "2rem" }}
           >
-            Book Assignment View
+            Book Assignment
           </Typography>
           {searchResults && (
             <Container maxWidth="sm">
