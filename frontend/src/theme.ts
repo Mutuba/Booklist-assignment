@@ -60,12 +60,6 @@ const theme = createTheme({
     },
     MuiTypography: {
       styleOverrides: {
-        h1: {
-          color: "#5ACCCC",
-        },
-        h2: {
-          color: "#5ACCCC",
-        },
         h3: {
           color: "#5ACCCC",
         },
