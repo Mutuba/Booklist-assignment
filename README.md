@@ -84,36 +84,24 @@ Below is the solution for the challenge. I have provided sample screenshots.
 
 To start the app, while at the root, you can run `npm run start` that will start concurrently both the backend and front end apps on their respective ports.
 
-To access the front-end application, you can go to `localhost:9000` if you are running the app locally.
+To access the front end application, you can go to `localhost:9000` if you are running the app locally.
+
+## Running Tests
+
+The application has been tested. To run tests, you can cd directory into the frontend directory `cd frontend` and run `npm test`
 
 # How it Works
 
 ## Searching and adding a book
 
-On the home page, the user is greeted by an awesome loader and then a screen that has a search input field with the placeholder `Search books`. Upon clicking into the field, a scrollable book search results pop up. The lists dynamically update based on matching filters as per user input. Clicking on the `Add` icon on any of the search result items adds the book to the reading list and a check badge is added to the search result indicating the book has been added to the reading list. At the same time, the user sees a snack bar alert `Book added to the reading list`  
-The user can click outside or use the escape key `esc`  to close/hide the scrollable search results.
-<img width="1437" alt="Screenshot 2024-06-14 at 15 03 01" src="https://github.com/Mutuba/Booklist-assignment/assets/39365725/b15506f3-57ab-4474-996c-8a912ca39e16">
+On the home page, the user is greated by an awesome loader and then  a screen that has a search input field with placeholder `Search books` . Upon clicking into the field, a scrollable book search results pops up. The lists dynamically updates based on matching filters as per user input. Clicking on the `Add` icon on the any of the search result item adds the book to the reading list add a check badge is added to the search result indicating the book has been added to the reading list. At the same time, the user seems a snackbar alert `Book added to reading list`  
+The user can click outside or use the escape key `esc`  to close/hide he scrollable search results.
 
+## Access Reading list and Remove Books
 
-## Access the Reading list and Remove Books
+When a user adds a book to the reading list, the operation is real time, the user will see the book appear in the reading list section below the search field. The user can scroll through this list of books presented in cards and optionally remove a book from the list by clicking on the `Remove from Reading List` button available on each book card. The presentation is neat, each card has an image of the book, a visible title, details about author and reading level.  
+When a user removes a book from the reading list, the operation is real time, the book gets removed and the user sees a snackbar alert `Book removed from reading list`
 
-When a user adds a book to the reading list, the operation is real-time, the user will see the book appear in the reading list section below the search field. The user can scroll through this list of books presented in cards and optionally remove a book from the list by clicking on the `Remove from Reading List` button available on each book card. The presentation is neat, each card has an image of the book, a visible title, and details about the author and reading level.  
-When a user removes a book from the reading list, the operation is real-time, the book gets removed and the user sees a snack bar alert `Book removed from reading list`
-<img width="1437" alt="Screenshot 2024-06-14 at 15 03 01" src="https://github.com/Mutuba/Booklist-assignment/assets/39365725/bd278583-6e90-46cc-98c5-ba842ece2144">
+## Design and Responsiveness
 
-
-## Design and Responsiveness 
-
-The UI has been designed using pure material UI components with minor modifications. There are reusable components such as ones that show alerts and loading states. The app is fully responsive with the cards flexing for the viewport. The UI color choice avoids bright colors, keeping it simple and using Ello website color.
-
-
-<img width="235" alt="Screenshot 2024-06-14 at 15 07 17" src="https://github.com/Mutuba/Booklist-assignment/assets/39365725/94c92efb-6927-4846-b459-0822447e9d97">
-<img width="235" alt="Screenshot 2024-06-14 at 15 08 15" src="https://github.com/Mutuba/Booklist-assignment/assets/39365725/3ad08f48-147d-419f-9540-61061f60e8e2">
-
-
-
-
-
-
-
-
+The UI has been designed using pure material UI components with minor modifications. There are resusble compoennts such as onces that show alerts and loading state. The app is fully responsive with the cards flexing with respect to view port. The UI color shoice avoids bright colors, keeping it simple and using Ello website color to make the application familiar.
