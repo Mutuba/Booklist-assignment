@@ -25,7 +25,7 @@ describe("App Component", () => {
 
     await waitFor(() => {
       expect(screen.queryByRole("progressbar")).toBeNull();
-      expect(screen.getByText("Book Assignment View")).toBeInTheDocument();
+      expect(screen.getByText("Book Assignment")).toBeInTheDocument();
       expect(screen.getByLabelText("Search books")).toBeInTheDocument();
       expect(screen.getByText("Reading List")).toBeInTheDocument();
     });
