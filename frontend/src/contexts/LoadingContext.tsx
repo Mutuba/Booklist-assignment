@@ -4,18 +4,20 @@ import React, {
   useState,
   ReactNode,
   useMemo,
+  SetStateAction,
+  Dispatch,
 } from "react";
 
 interface LoadingContextProps {
   isLoading: boolean;
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
 }
 
 interface LoadingProviderProps {
   children: ReactNode;
   value?: {
     isLoading?: boolean;
-    setIsLoading?: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsLoading?: Dispatch<SetStateAction<boolean>>;
   };
 }
 
@@ -39,6 +41,7 @@ export const LoadingProvider: React.FC<LoadingProviderProps> = ({
 
   const setIsLoading = value?.setIsLoading ?? setInternalIsLoading;
 
+  // tracking internal value internalIsLoading and setIsLoading the state setter
   const contextValue = useMemo(
     () => ({
       isLoading: internalIsLoading,

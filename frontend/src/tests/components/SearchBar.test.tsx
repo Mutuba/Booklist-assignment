@@ -61,13 +61,15 @@ describe("SearchBar Component", () => {
       </ReadingListProvider>
     );
     const textFieldElement = screen.getByLabelText("Search books");
-    userEvent.type(textFieldElement, "Book 1");
+    userEvent.type(textFieldElement, `${mockBooks[0].title}`);
 
     fireEvent.keyDown(textFieldElement, { key: "ArrowDown" });
 
     await waitFor(() => {
-      expect(screen.getByText("Book 1")).toBeInTheDocument();
-      expect(screen.queryByText("Book 2")).not.toBeInTheDocument();
+      expect(screen.getByText(`${mockBooks[0].title}`)).toBeInTheDocument();
+      expect(
+        screen.queryByText(`${mockBooks[1].title}`)
+      ).not.toBeInTheDocument();
     });
   });
 
@@ -87,11 +89,11 @@ describe("SearchBar Component", () => {
       </ReadingListProvider>
     );
     const textFieldElement = screen.getByLabelText("Search books");
-    userEvent.type(textFieldElement, "Book 1");
+    userEvent.type(textFieldElement, `${mockBooks[0].title}`);
 
     fireEvent.keyDown(textFieldElement, { key: "ArrowDown" });
 
-    await screen.findByText("Book 1");
+    await screen.findByText(`${mockBooks[0].title}`);
     const addButton = screen.getByTestId(`add-book-button-${mockBooks[0].id}`);
     fireEvent.click(addButton);
 

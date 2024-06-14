@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client";
 import { Container, Typography } from "@mui/material";
 import ReadingList from "./components/ReadingList";
 import SearchBar from "./components/SearchBar";
-import CustomAlert from "./components/shared/SnackbarAlert";
+import SnackbarAlert from "./components/shared/SnackbarAlert";
 import { Book } from "./interfaces/Book";
 import { useReadingList } from "../../frontend/src/contexts/ReadingListContext";
 import Loader from "./components/shared/Loader";
@@ -35,7 +35,7 @@ const App: React.FC = () => {
         <Loader />
       ) : (
         <>
-          {showSnackbarAlert && <CustomAlert />}
+          {showSnackbarAlert && <SnackbarAlert />}
           <Typography
             variant="h2"
             gutterBottom

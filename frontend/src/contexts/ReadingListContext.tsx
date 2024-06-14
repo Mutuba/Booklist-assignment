@@ -41,13 +41,20 @@ export const ReadingListProvider: React.FC<ReadingListProviderProps> = ({
   );
 
   const addBookToReadingList =
-    value?.addBookToReadingList ||
+    value?.addBookToReadingList ??
     ((book: Book) => {
-      setReadingList((prevReadingList) => [...prevReadingList, book]);
+      if (
+        !internalReadingList.some(
+          (internalReadingListBook) => internalReadingListBook.id === book.id
+        )
+      ) {
+        setReadingList((prevReadingList) => [...prevReadingList, book]);
+      }
     });
 
+  console.log("Adding book to reading list", value?.readingList);
   const removeBookFromReadingList =
-    value?.removeBookFromReadingList ||
+    value?.removeBookFromReadingList ??
     ((book: Book) => {
       setReadingList((prevReadingList) =>
         prevReadingList.filter(
