@@ -71,7 +71,6 @@ describe("BookDetail Component", () => {
       expect(addBookToReadingListMock).toHaveBeenCalledWith(mockBook);
       expect(setIsLoadingMock).toHaveBeenCalledWith(true);
       expect(setIsLoadingMock).toHaveBeenCalledWith(false);
-
       expect(setShowSnackbarAlertMock).toHaveBeenCalledWith(true);
       expect(triggerSnackbarAlertMock).toHaveBeenCalledWith(
         "Book added to reading list"
@@ -93,7 +92,6 @@ describe("BookDetail Component", () => {
     expect(screen.getByTestId("CheckCircleIcon")).toBeInTheDocument();
     const addButton = screen.getByTestId(`add-book-button-${mockBook.id}`);
     fireEvent.click(addButton);
-
     await waitFor(() => {
       expect(addBookToReadingListMock).not.toHaveBeenCalled();
     });
