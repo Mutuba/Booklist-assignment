@@ -72,3 +72,11 @@ export const bookMockResult = [
     },
   },
 ];
+
+export const paginatedMockBooks = Array.from({ length: 15 }, (_, i) => ({
+  id: `book-${i}`,
+  title: `Book Title ${i}`,
+  author: `Author ${i}`,
+  coverPhotoURL: "image2.webp",
+  readingLevel: "B",
+}));

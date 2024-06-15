@@ -21,6 +21,7 @@ import { SnackbarAlertProvider } from "../../contexts/SnackbarAlertContext";
 describe("BookDetail Component", () => {
   beforeEach(() => {
     cleanup();
+    jest.clearAllMocks();
   });
 
   test("renders book details correctly", () => {
@@ -75,6 +76,26 @@ describe("BookDetail Component", () => {
       expect(triggerSnackbarAlertMock).toHaveBeenCalledWith(
         "Book added to reading list"
       );
+    });
+  });
+  test("displays check icon if book is in reading list", async () => {
+    render(
+      <ReadingListProvider value={{ readingList: [mockBook] }}>
+        <LoadingProvider>
+          <SnackbarAlertProvider>
+            <BookDetail book={mockBook} />
+          </SnackbarAlertProvider>
+        </LoadingProvider>
+      </ReadingListProvider>
+    );
+
+    expect(screen.getByTestId(`add-book-button-${mockBook.id}`)).toBeDisabled();
+    expect(screen.getByTestId("CheckCircleIcon")).toBeInTheDocument();
+    const addButton = screen.getByTestId(`add-book-button-${mockBook.id}`);
+    fireEvent.click(addButton);
+
+    await waitFor(() => {
+      expect(addBookToReadingListMock).not.toHaveBeenCalled();
     });
   });
 });

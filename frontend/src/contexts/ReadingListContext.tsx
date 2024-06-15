@@ -37,7 +37,7 @@ export const ReadingListProvider: React.FC<ReadingListProviderProps> = ({
   value,
 }) => {
   const [internalReadingList, setReadingList] = useState<Book[]>(
-    value?.readingList || []
+    value?.readingList ?? []
   );
 
   const addBookToReadingList =
