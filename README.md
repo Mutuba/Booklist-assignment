@@ -8,7 +8,7 @@ Below is the solution for the challenge. I have provided sample screenshots.
 
 To start the app, while at the root, you can run `npm run start` that will start concurrently both the backend and front end apps on their respective ports.
 
-To access the front-end application, you can go to `localhost:9000` if you are running the app locally.
+To access the front-end application, you can go to `localhost:9000` if you run the app locally.
 
 ## Running Tests
 
@@ -18,8 +18,12 @@ The application has been tested. To run tests, you can cd directory into the fro
 
 ## Searching and adding a book
 
-On the home page, the user is greeted by an awesome loader and then a screen that has a search input field with the placeholder `Search books`. Upon clicking into the field, a scrollable book search results pop up. The lists dynamically update based on matching filters as per user input. Clicking on the `Add` icon on any of the search result items adds the book to the reading list and a check badge is added to the search result indicating the book has been added to the reading list. At the same time, the user sees a snack bar alert `Book added to the reading list`  
-The user can click outside or use the escape key `esc`  to close/hide the scrollable search results.  
+On the home page, the user is greeted by an awesome loader and then a screen with a search input field with the placeholder `Search books`. Upon clicking into the field, a scrollable book search results pop up. The lists dynamically update based on matching filters as per user input. Clicking on the `Add` icon on any of the search result items adds the book to the reading list and a check badge is added to the search result indicating the book has been added to the reading list. At the same time, the user sees a snack bar alert `Book added to the reading list`  
+The user can click outside or use the escape key `esc`  to close/hide the scrollable search results. 
+
+Empty State
+<img width="1440" alt="Screenshot 2024-06-16 at 17 48 18" src="https://github.com/Mutuba/Booklist-assignment/assets/39365725/6c320ff3-f548-459a-8ce6-355917c8d5b6">
+
 ![Screenshot 2024-06-14 at 20 33 51](https://github.com/Mutuba/Booklist-assignment/assets/39365725/22a2b6b4-03ee-438a-9e83-ad6f0b0809fa)
 
 ## Access the Reading list and Remove Books
