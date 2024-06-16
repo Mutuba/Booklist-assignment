@@ -46,7 +46,9 @@ describe("SearchBar Component", () => {
         </LoadingProvider>
       </ReadingListProvider>
     );
-    const textFieldElement = screen.getByLabelText("Search books");
+    const textFieldElement = screen.getByLabelText(
+      "Search for books to add to the reading list"
+    );
     expect(textFieldElement).toBeInTheDocument();
   });
 
@@ -60,7 +62,9 @@ describe("SearchBar Component", () => {
         </LoadingProvider>
       </ReadingListProvider>
     );
-    const textFieldElement = screen.getByLabelText("Search books");
+    const textFieldElement = screen.getByLabelText(
+      "Search for books to add to the reading list"
+    );
     userEvent.type(textFieldElement, `${mockBooks[0].title}`);
 
     fireEvent.keyDown(textFieldElement, { key: "ArrowDown" });
@@ -88,7 +92,9 @@ describe("SearchBar Component", () => {
         </LoadingProvider>
       </ReadingListProvider>
     );
-    const textFieldElement = screen.getByLabelText("Search books");
+    const textFieldElement = screen.getByLabelText(
+      "Search for books to add to the reading list"
+    );
     userEvent.type(textFieldElement, `${mockBooks[0].title}`);
 
     fireEvent.keyDown(textFieldElement, { key: "ArrowDown" });

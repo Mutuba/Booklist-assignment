@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
-import { Container, Typography } from "@mui/material";
+import { Container, Typography, Box } from "@mui/material";
 import ReadingList from "./components/ReadingList";
 import SearchBar from "./components/SearchBar";
 import SnackbarAlert from "./components/shared/SnackbarAlert";
@@ -33,30 +33,39 @@ const App: React.FC = () => {
   return (
     <>
       <ElloAppBar />
+
       <Container maxWidth="md" style={{ marginTop: "3rem" }}>
-        {loading || isLoading ? (
-          <Loader />
-        ) : (
-          <>
-            {showSnackbarAlert && <SnackbarAlert />}
-            <Typography
-              variant="h3"
-              gutterBottom
-              style={{ textAlign: "center", padding: "2rem" }}
-            >
-              Book Assignment
-            </Typography>
-            {searchResults && (
-              <Container maxWidth="sm">
-                <SearchBar
-                  books={searchResults}
-                  setSearchResults={setSearchResults}
-                />
-              </Container>
-            )}
-            <ReadingList books={readingList} />
-          </>
-        )}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          {loading || isLoading ? (
+            <Loader />
+          ) : (
+            <>
+              {showSnackbarAlert && <SnackbarAlert />}
+              <Typography
+                variant="h3"
+                gutterBottom
+                style={{ textAlign: "center", padding: "2rem" }}
+              >
+                Book Assignment
+              </Typography>
+              {searchResults && (
+                <Container maxWidth="sm">
+                  <SearchBar
+                    books={searchResults}
+                    setSearchResults={setSearchResults}
+                  />
+                </Container>
+              )}
+              <ReadingList books={readingList} />
+            </>
+          )}
+        </Box>
       </Container>
     </>
   );

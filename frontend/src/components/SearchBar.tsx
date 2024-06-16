@@ -36,7 +36,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ books, setSearchResults }) => {
       renderInput={(params) => (
         <TextField
           {...params}
-          label="Search books"
+          label="Search for books to add to the reading list"
+          placeholder="Enter book title"
           InputProps={{
             ...params.InputProps,
             endAdornment: null,
