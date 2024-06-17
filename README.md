@@ -30,7 +30,8 @@ Empty State
 
 When a user adds a book to the reading list, the operation is real-time, the user will see the book appear in the reading list section below the search field. The user can scroll through this list of books presented in cards and optionally remove a book from the list by clicking on the `Remove from Reading List` button available on each book card. The presentation is neat, each card has an image of the book, a visible title, and details about the author and reading level.  
 When a user removes a book from the reading list, the operation is real-time, the book gets removed and the user sees a snack bar alert `Book removed from reading list`  
-![Screenshot 2024-06-14 at 20 33 30](https://github.com/Mutuba/Booklist-assignment/assets/39365725/05c95450-889d-45a2-8551-50ce805f4f7b)
+
+<img width="1440" alt="Screenshot 2024-06-17 at 08 47 44" src="https://github.com/Mutuba/Booklist-assignment/assets/39365725/a29dea81-0b68-41dd-b151-034c7e5cbd64">
 
 ## Design and Responsiveness
 
