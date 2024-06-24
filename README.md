@@ -1,8 +1,5 @@
-![svgviewer-output](https://github.com/ElloTechnology/backend_takehome/assets/3518127/561bc8d4-bffc-4360-b9ea-61e876bcec93)
 
-# Ello Engineering Challenge
-
-# Output/Solution
+# How it works
 
 Below is the solution for the challenge. I have provided sample screenshots.
 
@@ -35,7 +32,7 @@ When a user removes a book from the reading list, the operation is real-time, th
 
 ## Design and Responsiveness
 
-The UI has been designed using pure material UI components with minor modifications. There are reusable components such as ones that show alerts and loading states. The app is fully responsive with the cards flexing to view port. The UI color choice avoids bright colors, keeping it simple and using Ello website color to familiarize the application.
+The UI has been designed using pure material UI components with minor modifications. There are reusable components such as ones that show alerts and loading states. The app is fully responsive with the cards flexing to view port.
 
 <img width="216" alt="Screenshot 2024-06-16 at 17 51 33" src="https://github.com/Mutuba/Booklist-assignment/assets/39365725/e3b9566b-73a9-4bad-9455-218c479fc334">
 <img width="218" alt="Screenshot 2024-06-16 at 17 51 15" src="https://github.com/Mutuba/Booklist-assignment/assets/39365725/716d24af-a2c7-47b7-80f5-56858b4071a0">
